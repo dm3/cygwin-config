@@ -4,14 +4,14 @@ if [ $# -ne 1 ]; then
 else
     case "$1" in
         IN)
-            cp ../.bashrc .
-            cp ../.gitconfig .
-	    cp ../.ctags .
+            cp ~/.bashrc .
+            cp ~/.gitconfig .
+	    cp ~/.ctags .
         ;;
         OUT)
-            cp .bashrc ../
-            cp .gitconfig ../
-	    cp .ctags ../
+            cp .bashrc ~
+            cp .gitconfig ~
+	    cp .ctags ~
         ;;
     esac
 fi
