@@ -1,0 +1,22 @@
+[merge]
+	tool = gvim
+
+[mergetool "gvim"]
+	cmd = ~/my_scripts/git/gvim-diff.sh "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE" "$PWD/$MERGED" 
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+[alias]
+	ci = commit
+	co = checkout
+	br = branch
+	st = status
+	rmall = !git ls-files --deleted | xargs git rm
+	addrm = !git add . && git rmall
+	svnup = !~/my_scripts/git/svn_up_branch.sh
+	svnpush = !~/my_scripts/git/svn_push_branch.sh
+[core]
+	editor = vim
+[user]
+	email = deadmoro3@gmail.com
