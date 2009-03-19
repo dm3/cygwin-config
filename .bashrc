@@ -100,7 +100,7 @@ alias mvnrun='~/my_scripts/mvn/run_class.sh'
 
 # set a nice looking prompt:
 # PS1='\u@\h:\W\$ '
-PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+PS1='[\u@\h in \w $(__git_ps1 "(%s)")]\n\$ '
 
 #A function to pipe any command to less:
 function so {
