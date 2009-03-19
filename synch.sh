@@ -7,11 +7,13 @@ else
             cp ~/.bashrc .
             cp ~/.gitconfig .
 	    cp ~/.ctags .
+	    cp ~/.Xdefaults .
         ;;
         OUT)
             cp .bashrc ~
             cp .gitconfig ~
 	    cp .ctags ~
+	    cp .Xdefaults ~
         ;;
     esac
 fi
