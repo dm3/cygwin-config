@@ -56,7 +56,7 @@ source ~/my_scripts/git/git-completion.sh
 export HISTCONTROL="ignoredups"
 
 # Ignore some controlling instructions
-export HISTIGNORE="[   ]*:&:bg:fg:ls:la:exit:[ \t]*"
+export HISTIGNORE="[   ]*:&:bg:fg:ls:la:git st:exit:[ \t]*"
 
 # Whenever displaying the prompt, write the previous line to disk
 # export PROMPT_COMMAND="history -a"
