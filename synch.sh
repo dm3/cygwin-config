@@ -5,12 +5,14 @@ else
     case "$1" in
         IN)
             cp ~/.bashrc .
+            cp ~/.inputrc .
             cp ~/.gitconfig .
 	    cp ~/.ctags .
 	    cp ~/.Xdefaults .
         ;;
         OUT)
             cp .bashrc ~
+            cp .inputrc ~
             cp .gitconfig ~
 	    cp .ctags ~
 	    cp .Xdefaults ~
