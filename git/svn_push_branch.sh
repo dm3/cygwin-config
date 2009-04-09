@@ -10,4 +10,5 @@ if [[ ! "${CURRENT}" =~ master ]]; then
         git merge ${CURRENT}
         git svn dcommit
     fi
+    git checkout ${CURRENT}
 fi
