@@ -14,6 +14,7 @@
 	st = status
 	rmall = !git ls-files --deleted | xargs git rm
 	addrm = !git add . && git rmall
+	addregex = !~/my_scripts/git/git_add_regex.sh
 	svnup = !~/my_scripts/git/svn_up_branch.sh
 	svnpush = !~/my_scripts/git/svn_push_branch.sh
 [core]
