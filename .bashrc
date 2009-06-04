@@ -6,6 +6,8 @@
 # User dependent .bashrc file
 
 source ~/my_scripts/git/git-completion.sh
+source ~/my_scripts/bash/aliases.sh
+source ~/my_scripts/bash/shell.sh
 
 # Shell Options
 # #############
@@ -58,48 +60,7 @@ export HISTCONTROL="ignoredups"
 # Ignore some controlling instructions
 export HISTIGNORE="[   ]*:&:bg:fg:ls:la:git st:exit:[ \t]*"
 
-# Whenever displaying the prompt, write the previous line to disk
-# export PROMPT_COMMAND="history -a"
-
-
-# Aliases
-# #######
-#  To override the alias instruction use a \ before, ie
-# \rm will call the real rm not the alias.
-
-# Interactive operation...
-alias rm='rm -i'
-alias cp='cp -i'
-alias mv='mv -i'
-
-# Default to human readable figures
-alias df='df -h'
-alias du='du -h'
-
-# Misc :)
-alias less='less -r'                          # raw control characters
-alias whence='type -a'                        # where, of a sort
-alias grep='grep --color'                     # show differences in colour
-
-# Some shortcuts for different directory listings
-alias ls='ls -hF --color=tty'                 # classify files in colour
-alias dir='ls --color=auto --format=vertical'
-alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
-
-alias c:='cd /cygdrive/c'
-alias d:='cd /cygdrive/d'
-alias vi='vim'
-alias cls='clear'
-
-# mvn
-alias mvninstall='~/my_scripts/mvn/install_file.sh'
-alias mvnrun='~/my_scripts/mvn/run_class.sh'
-
 # set a nice looking prompt:
-#PS1='[\u@\h in \w $(__git_ps1 " (%s)")]\n\$ '
 PS1='\[\033]0;\W [\u@\h] \!\007\]\h \[\033[1;36m\](\A) \! \[\033[1;33m\]\w \[\033[0;37m\] $(__git_ps1 "(%s)")\n\# > '
 
 #A function to pipe any command to less:

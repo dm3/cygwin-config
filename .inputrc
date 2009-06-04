@@ -39,11 +39,8 @@ set input-meta on
 set output-meta on
 
 "\C-v": paste-from-clipboard
-
+#
 #$if Bash
-  # vi mode
-  set -o vi
-
   # Filename completion/expansion
   #set completion-ignore-case on
   #set show-all-if-ambiguous on
