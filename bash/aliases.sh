@@ -38,6 +38,7 @@ alias cls='clear'
 alias mvninstall='~/my_scripts/mvn/install_file.sh'
 alias mvnrun='~/my_scripts/mvn/run_class.sh'
 alias mvnmodule='~/my_scripts/mvn/comment_module.sh'
+alias mvnchversion='~/my_scripts/mvn/version.sh'
 
 #svn
 alias sbtowc='~/my_scripts/svn/b2wc.sh'
