@@ -40,4 +40,8 @@ alias mvnrun='~/my_scripts/mvn/run_class.sh'
 alias mvnmodule='~/my_scripts/mvn/comment_module.sh'
 
 #svn
-alias svnswitch='~/my_scripts/svn/switch_to.sh'
+alias sbtowc='~/my_scripts/svn/b2wc.sh'
+alias swctob='~/my_scripts/svn/wc2b.sh'
+alias svnsw='~/my_scripts/svn/switch_to.sh'
+alias sst='svn st'
+alias si='svn info'
