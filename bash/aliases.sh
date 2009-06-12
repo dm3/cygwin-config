@@ -45,5 +45,7 @@ alias svnsw='~/my_scripts/svn/switch_to.sh'
 alias svnserver='~/my_scripts/svn/svnversion.py'
 alias sbtowc='~/my_scripts/svn/b2wc.sh'
 alias swctob='~/my_scripts/svn/wc2b.sh'
+alias supwc='~/my_scripts/svn/updatewcfromtrunk.sh'
+alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ |.*//' | tail -n 1"
 alias sst='svn st'
 alias si='svn info'
