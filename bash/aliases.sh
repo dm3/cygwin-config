@@ -41,8 +41,9 @@ alias mvnmodule='~/my_scripts/mvn/comment_module.sh'
 alias mvnchversion='~/my_scripts/mvn/version.sh'
 
 #svn
+alias svnsw='~/my_scripts/svn/switch_to.sh'
+alias svnserver='~/my_scripts/svn/svnversion.py'
 alias sbtowc='~/my_scripts/svn/b2wc.sh'
 alias swctob='~/my_scripts/svn/wc2b.sh'
-alias svnsw='~/my_scripts/svn/switch_to.sh'
 alias sst='svn st'
 alias si='svn info'
