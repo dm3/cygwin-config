@@ -34,6 +34,9 @@ alias :::='cd ../../..'
 alias vi='vim'
 alias cls='clear'
 
+# workaround for ghcii not being on the path
+alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
+
 # mvn
 alias mvninstall='~/my_scripts/mvn/install_file.sh'
 alias mvnrun='~/my_scripts/mvn/run_class.sh'
