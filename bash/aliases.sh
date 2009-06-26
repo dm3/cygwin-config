@@ -34,6 +34,8 @@ alias :::='cd ../../..'
 alias vi='vim'
 alias cls='clear'
 
+alias lines='~/my_scripts/util/count_lines.sh'
+
 # workaround for ghcii not being on the path
 alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
 
