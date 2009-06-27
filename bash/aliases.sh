@@ -34,6 +34,8 @@ alias :::='cd ../../..'
 alias vi='vim'
 alias cls='clear'
 
+alias lines='~/my_scripts/util/count_lines.sh'
+
 # workaround for ghcii not being on the path
 alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
 
@@ -49,6 +51,7 @@ alias svnserver='~/my_scripts/svn/svnversion.py'
 alias sbtowc='~/my_scripts/svn/b2wc.sh'
 alias swctob='~/my_scripts/svn/wc2b.sh'
 alias supwc='~/my_scripts/svn/updatewcfromtrunk.sh'
+alias sgotowc='svnsw branches/my_working_copy'
 alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ |.*//' | tail -n 1"
 alias sst='svn st'
 alias si='svn info'

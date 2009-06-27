@@ -1,0 +1,70 @@
+---------------------------------- importing existing git repo to svn (The Subversion repository must be nonempty)
+    git svn clone --username you https://your-project.googlecode.com/svn/trunk
+    cd trunk
+    git fetch $GIT_REPO
+
+--Create a temporary branch for the fetched repository, and tag its head:
+    git branch tmp $(cut -b-40 .git/FETCH_HEAD)
+    --git branch tmp $(sed 's/^\([0-9a-b]\{40\}\).*master.*$/\1/' .get/FETCH_HEAD | tail -n1)
+    git tag -a -m "Last fetch" last tmp
+
+--Unfortunately, Git treats the initial commit specially, and in particular, cannot rebase it. Work around this as follows:
+    INIT_COMMIT=$(git log tmp --pretty=format:%H | tail -1)
+    git checkout $INIT_COMMIT .
+    git commit -C $INIT_COMMIT
+
+--Apply all the other commits to the temporary branch, and make it the new master branch:
+    git rebase master tmp
+    git branch -M tmp master
+
+    git svn dcommit
+
+--If a git-svn dcommit fails:
+
+   1. open .git/logs/HEAD
+   2. Find the hash of the commit that's the head of your git repo. Hopefully
+   you remember the commit message and can figure it out, but it should be
+   pretty obvious
+   3. git reset --hard _hash from log_ (This gets your working dir back to where it was before you did a git-svn dcommit).
+   4. git-svn rebase
+   5. git-svn dcommit
+
+Repeat these steps until the commit completes normally. If the dcommit fails with some error, it will pick up where it left off.
+
+---------------------------------- WORKING WITH GIT-SVN repo
+    git checkout work
+	<do some work>
+    git checkout master
+    git svn fetch
+    git rebase master work
+    git checkout master
+    git merge work
+    git svn dcommit
+
+If commit fails, just do -
+    git revert master
+    git rebase master work
+    git checkout master
+    git merge work
+    git svn dcommit
+
+OR - almost the same --------------
+
+   1. Commit everything to the topic branch
+   2. git checkout master
+   3. git svn rebase <-- if previous dcommit failed due to network errors this rebase might pull changes contained in working branch, so just clean -df them and proceed
+   4. git merge topic_branch
+   5. resolve any merge conflicts
+   6. git svn dcommit
+
+I also have another situation where I need to maintain some local changes (for
+debugging) that should never be pushed up to svn. For that, I have the above
+master branch but also a branch called "work" where I normally do work. Topic
+branches are branched off work. When I want to commit work there, I checkout
+master and use cherry-pick to pick the commits from the work branch that I want
+to commit to svn. This is because I want to avoid committing the three local
+change commits. Then, I dcommit from the master branch and rebase everything.
+
+It is worthwhile running git svn dcommit -n first to make sure that you are
+about to commit exactly what you intend to commit. Unlike git, rewriting
+history in svn is hard!
