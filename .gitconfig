@@ -2,22 +2,32 @@
 	tool = gvim
 
 [mergetool "gvim"]
-	cmd = ~/my_scripts/git/gvim-diff.sh "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE" "$PWD/$MERGED" 
+	cmd = "$MY_SCRIPTS/git/gvim-diff.sh $PWD/$LOCAL $PWD/$BASE $PWD/$REMOTE $PWD/$MERGED" 
+
 [color]
+	ui = auto
 	status = auto
 	branch = auto
 	diff = auto
+
 [alias]
+	stage = add
+	unstage = reset HEAD
 	ci = commit
 	co = checkout
 	br = branch
 	st = status
 	rmall = !git ls-files --deleted | xargs git rm
 	addrm = !git add . && git rmall
-	addregex = !~/my_scripts/git/git_add_regex.sh
-	svnup = !~/my_scripts/git/svn_up_branch.sh
-	svnpush = !~/my_scripts/git/svn_push_branch.sh
+	addregex = !"$MY_SCRIPTS/git/git_add_regex.sh"
+	svnup = !"$MY_SCRIPTS/git/svn_up_branch.sh"
+	svnpush = !"$MY_SCRIPTS/git/svn_push_branch.sh"
+
+	lg = log --pretty=tformat:'%h %Cblue%cr%Creset %cn %Cgreen%s%Creset'
+	lgraph = !git lg --graph
+
 [core]
 	editor = vim
+
 [user]
 	email = deadmoro3@gmail.com
