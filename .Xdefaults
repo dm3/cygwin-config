@@ -11,20 +11,41 @@ rxvt.colorul:         yellow
 rxvt.geometry:	120x30
 rxvt.saveLines: 2000
 
-rxvt*color0:    #000000
-rxvt*color1:    #ff2020
-rxvt*color2:    #20ff20
-rxvt*color3:    #ffff00
-rxvt*color4:    #4040ff
-rxvt*color5:    #a800a8
-rxvt*color6:    #00a8a8
-rxvt*color7:    #d8d8d8
-rxvt*color8:    #000000
-rxvt*color9:    #ff2020
-rxvt*color10:   #20ff20
-rxvt*color11:   #ffff00
-rxvt*color12:   #4040ff
-rxvt*color13:   #a800a8
-rxvt*color14:   #00a8a8
-rxvt*color15:   #d8d8d8
+rxvt.foreground: #f2f2f2
+rxvt.background: #101010
+
+rxvt*color0:    #6c6c6c
+rxvt*color1:    #e9897c
+rxvt*color2:    #b6e77d
+rxvt*color3:    #ecebbe
+rxvt*color4:    #a9cdeb
+rxvt*color5:    #ea96eb
+rxvt*color6:    #c9caec
+rxvt*color7:    #f2f2f2
+rxvt*color8:    #747474
+rxvt*color9:    #f99286
+rxvt*color10:    #c3f786
+rxvt*color11:    #fcfbcc
+rxvt*color12:    #b6defb
+rxvt*color13:    #fba1fb
+rxvt*color14:    #d7d9fc
+rxvt*color15:    #e2e2e2
+
+! old colors
+!rxvt*color0:    #000000
+!rxvt*color1:    #ff2020
+!rxvt*color2:    #20ff20
+!rxvt*color3:    #ffff00
+!rxvt*color4:    #4040ff
+!rxvt*color5:    #a800a8
+!rxvt*color6:    #00a8a8
+!rxvt*color7:    #d8d8d8
+!rxvt*color8:    #000000
+!rxvt*color9:    #ff2020
+!rxvt*color10:   #20ff20
+!rxvt*color11:   #ffff00
+!rxvt*color12:   #4040ff
+!rxvt*color13:   #a800a8
+!rxvt*color14:   #00a8a8
+!rxvt*color15:   #d8d8d8
 
