@@ -55,3 +55,4 @@ alias sgotowc='svnsw branches/my_working_copy'
 alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ |.*//' | tail -n 1"
 alias sst='svn st'
 alias si='svn info'
+alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
