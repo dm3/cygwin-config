@@ -34,6 +34,7 @@ alias :::='cd ../../..'
 alias vi='vim'
 alias cls='clear'
 
+alias size='du -sh'
 alias lines='$MY_SCRIPTS/util/count_lines.sh'
 
 # workaround for ghcii not being on the path
