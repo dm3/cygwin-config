@@ -1,3 +1,6 @@
+[apply]
+	whitespace = fix
+
 [merge]
 	tool = gvim
 
@@ -19,9 +22,9 @@
 	st = status
 	rmall = !git ls-files --deleted | xargs git rm
 	addrm = !git add . && git rmall
-	addregex = !"$MY_SCRIPTS/git/git_add_regex.sh"
-	svnup = !"$MY_SCRIPTS/git/svn_up_branch.sh"
-	svnpush = !"$MY_SCRIPTS/git/svn_push_branch.sh"
+	addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
+	svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
+	svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
 
 	lg = log --pretty=tformat:'%h %Cblue%cr%Creset %cn %Cgreen%s%Creset'
 	lgraph = !git lg --graph
@@ -30,4 +33,5 @@
 	editor = vim
 
 [user]
+	name = dm3
 	email = deadmoro3@gmail.com

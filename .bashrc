@@ -5,7 +5,6 @@
 
 # User dependent .bashrc file
 
-echo "IMPORTING, scripts: $MY_SCRIPTS"
 export MY_SCRIPTS="$HOME/my_scripts"
 source "$MY_SCRIPTS/git/git-completion.sh"
 source "$MY_SCRIPTS/bash/aliases.sh"
