@@ -27,9 +27,6 @@ alias l='ls -CF'                              #
 
 alias c:='cd /cygdrive/c'
 alias d:='cd /cygdrive/d'
-alias :='cd ..'
-alias ::='cd ../..'
-alias :::='cd ../../..'
 
 alias vi='vim'
 alias cls='clear'
@@ -43,7 +40,6 @@ alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
 # mvn
 alias mvninstall='$MY_SCRIPTS/mvn/install_file.sh'
 alias mvnrun='$MY_SCRIPTS/mvn/run_class.sh'
-alias mvnmodule='$MY_SCRIPTS/mvn/comment_module.sh'
 alias mvnchversion='$MY_SCRIPTS/mvn/version.sh'
 
 #svn
