@@ -36,6 +36,7 @@ alias cls='clear'
 
 alias size='du -sh'
 alias lines='$MY_SCRIPTS/util/count_lines.sh'
+findhere() { find . -path '**/target' -prune -o -path '**/.svn' -prune -o -name "$1" | xargs grep --color -E "$2" ;}
 
 # workaround for ghcii not being on the path
 alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
