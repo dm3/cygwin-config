@@ -11,14 +11,11 @@ while getopts ":r:" opt; do
       REGEX=$OPTARG
       ;;
     \?)
-      my_printout "Usage: [OPTIONS] [REGEX]"
-      my_printout "    -d -- debug output"
-      my_printout "    -r -- regex to be searched for"
+      my_printout "Usage: [-d] [-r REGEX]"
       exit 1
       ;;
     :)
-      my_printout "Option -$OPTARG requires an argument." >&2
-      exit 1
+      requires_arg
       ;;
   esac
 done
