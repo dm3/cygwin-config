@@ -1,10 +1,11 @@
+#include "$MY_SCRIPTS/looks/look-zenburn.xrdb"
+
 Xft*dpi: 99
 Xft*antialias: true
 Xft*hinting: full
 
 urxvt.font:	       xft:Terminus:size=12
 urxvt.scrollBar:       False
-!urxvt.scrollBar_right: True
 urxvt.visualBell:      True
 urxvt.loginShell:      True
 !scroll only once for each screenful of info
@@ -28,23 +29,23 @@ urxvt.colorul:         yellow
 urxvt.geometry:	120x30
 urxvt.saveLines: 2000
 
-urxvt.foreground: #f2f2f2
-urxvt.background: #101010
+urxvt.foreground: COLOR_FG
+urxvt.background: COLOR_BG
 
-urxvt*color0:    #6c6c6c
-urxvt*color1:    #e9897c
-urxvt*color2:    #b6e77d
-urxvt*color3:    #ecebbe
+urxvt*color0: COLOR_TERM_BLACK
+urxvt*color1: COLOR_TERM_DARK_RED
+urxvt*color2: COLOR_TERM_DARK_GREEN
+urxvt*color3: COLOR_TERM_DARK_YELLOW
 ! color4 - mc background
-urxvt*color4:    #4040ff
-urxvt*color5:    #ea96eb
-urxvt*color6:    #c9caec
-urxvt*color7:    #f2f2f2
-urxvt*color8:    #747474
-urxvt*color9:    #f99286
-urxvt*color10:    #c3f786
-urxvt*color11:    #fcfbcc
-urxvt*color12:    #b6defb
-urxvt*color13:    #fba1fb
-urxvt*color14:    #d7d9fc
-urxvt*color15:    #e2e2e2
+urxvt*color4: COLOR_TERM_DARK_BLUE
+urxvt*color5: COLOR_TERM_DARK_MAGENTA
+urxvt*color6: COLOR_TERM_DARK_CYAN
+urxvt*color7: COLOR_TERM_DARK_GRAY
+urxvt*color8: COLOR_TERM_DARK_GRAY
+urxvt*color9: COLOR_TERM_LIGHT_RED
+urxvt*color10: COLOR_TERM_LIGHT_GREEN
+urxvt*color11: COLOR_TERM_LIGHT_YELLOW
+urxvt*color12: COLOR_TERM_LIGHT_BLUE
+urxvt*color13: COLOR_TERM_LIGHT_MAGENTA
+urxvt*color14: COLOR_TERM_LIGHT_CYAN
+urxvt*color15: COLOR_TERM_WHITE
