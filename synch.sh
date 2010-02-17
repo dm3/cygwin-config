@@ -23,7 +23,8 @@ else
             if [[ -n "$CYGWIN_HOME" ]]; then
                 cp .Xdefaults.CYGWIN ~/.Xdefaults
             else
-                cp .Xdefaults.UNIX ~/.Xdefaults
+                dir=${MY_SCRIPTS//\//\\\/} #replace all matches of / with \/
+                cat .Xdefaults.UNIX | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xdefaults
             fi
         ;;
     esac
