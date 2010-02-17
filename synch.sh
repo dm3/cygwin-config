@@ -1,8 +1,11 @@
 #!/bin/bash
 
+
 if [ $# -ne 1 ]; then
     echo "Usage: synch IN | OUT"
 else
+    dir=${MY_SCRIPTS//\//\\\/} #replace all matches of / with \/
+
     case "$1" in
         IN)
             cp ~/.bashrc .
@@ -13,7 +16,7 @@ else
                 cp ~/.Xdefaults ./.Xdefaults.CYGWIN
             else
                 cp ~/.xmobarrc ./xmobar
-                cp ~/.Xdefaults ./.Xdefaults.UNIX
+                cat ~/.Xdefaults | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xdefaults.UNIX
             fi
         ;;
         OUT)
@@ -25,7 +28,6 @@ else
                 cp .Xdefaults.CYGWIN ~/.Xdefaults
             else
                 cp xmobar/.xmobarrc ~
-                dir=${MY_SCRIPTS//\//\\\/} #replace all matches of / with \/
                 cat .Xdefaults.UNIX | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xdefaults
             fi
         ;;
