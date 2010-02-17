@@ -1,0 +1,17 @@
+Config { font = "xft:Terminus:pixelsize=14:antialias=true:hinting=true"
+        , bgColor = "#222222"
+        , fgColor = "#dddddd"
+        , position = Top
+        , lowerOnStart = True
+        , commands = [ Run Network "eth0" ["-L","0","-H","32","--normal","#429942","--high","#A36666"] 10
+                     , Run Network "wlan0" ["-L","0","-H","32","--normal","#429942","--high","#A36666"] 10
+                     , Run Cpu ["-L","3","-H","50","--normal","#429942","--high","#A36666"] 10
+                     , Run Memory ["-t","Mem: <usedratio>%"] 10
+                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                     , Run Battery ["-L","30","-H","75","--high","#429942","--normal","#9C935D", "--low", "#A36666"] 10
+                     , Run StdinReader
+        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = " %StdinReader% }{ %cpu% | %memory% | %eth0% | %wlan0% | %battery% | %date%"
+}
