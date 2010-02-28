@@ -15,6 +15,7 @@ else
             if [[ -n "$CYGWIN_HOME" ]]; then
                 cp ~/.Xdefaults ./.Xdefaults.CYGWIN
             else
+                cp ~/.xinitrc .
                 cp ~/.xmobarrc ./xmobar
                 cat ~/.Xdefaults | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xdefaults.UNIX
             fi
@@ -27,6 +28,7 @@ else
             if [[ -n "$CYGWIN_HOME" ]]; then
                 cp .Xdefaults.CYGWIN ~/.Xdefaults
             else
+                cp .xinitrc ~
                 cp xmobar/.xmobarrc ~
                 cat .Xdefaults.UNIX | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xdefaults
             fi

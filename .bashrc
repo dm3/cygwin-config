@@ -10,8 +10,6 @@ source "$MY_SCRIPTS/git/git-completion.sh"
 source "$MY_SCRIPTS/bash/aliases.sh"
 source "$MY_SCRIPTS/bash/functions.sh"
 source "$MY_SCRIPTS/bash/shell.sh"
-# Include directives are recognized only after the merge
-xrdb -merge "$HOME/.Xdefaults"
 
 # Shell Options
 # #############
