@@ -5,7 +5,7 @@ source "$MY_SCRIPTS/bash/scaffolding.sh"
 
 # timeout in seconds
 TIMEOUT=2
-OUTPUT=/home/ping.log
+OUTPUT=/tmp/ping.log
 ADDRESS=127.0.0.1
 
 # --------------- BEGIN PARAMETERS

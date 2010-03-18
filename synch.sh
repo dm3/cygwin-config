@@ -17,6 +17,7 @@ else
             else
                 cp ~/.xinitrc .
                 cp ~/.xmobarrc ./xmobar
+                cp ~/.xmonad/xmonad.hs ./xmonad/
                 cat ~/.Xdefaults | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xdefaults.UNIX
             fi
         ;;
@@ -30,6 +31,7 @@ else
             else
                 cp .xinitrc ~
                 cp xmobar/.xmobarrc ~
+                cp xmonad/* ~/.xmonad/
                 cat .Xdefaults.UNIX | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xdefaults
             fi
         ;;
