@@ -54,3 +54,6 @@ alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ 
 alias sst='svn st'
 alias si='svn info'
 alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
+
+#util
+alias gmail='$MY_SCRIPTS/util/gmail.sh'
