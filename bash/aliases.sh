@@ -42,6 +42,9 @@ alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
 alias mvninstall='$MY_SCRIPTS/mvn/install_file.sh'
 alias mvnrun='$MY_SCRIPTS/mvn/run_class.sh'
 alias mvnchversion='$MY_SCRIPTS/mvn/version.sh'
+alias mcp='mvn clean package'
+alias mci='mvn clean install'
+alias mct='mvn clean test'
 
 #svn
 alias svnsw='$MY_SCRIPTS/svn/switch_to.sh'
@@ -54,3 +57,6 @@ alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ 
 alias sst='svn st'
 alias si='svn info'
 alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
+
+#explorer
+alias ex='$MY_SCRIPTS/util/explorer.sh'
