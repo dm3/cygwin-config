@@ -60,3 +60,6 @@ alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 
 #explorer
 alias ex='$MY_SCRIPTS/util/explorer.sh'
+
+#util
+alias gmail='$MY_SCRIPTS/util/gmail.sh'
