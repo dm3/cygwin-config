@@ -63,3 +63,5 @@ alias ex='$MY_SCRIPTS/util/explorer.sh'
 
 #util
 alias gmail='$MY_SCRIPTS/util/gmail.sh'
+alias mntcd="sudo mount /dev/scd0 /mnt/cd"
+alias mntusb="sudo mount /dev/sdb1 /mnt/usb1"
