@@ -58,8 +58,19 @@ alias sst='svn st'
 alias si='svn info'
 alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 
-#explorer
+#windows
 alias ex='$MY_SCRIPTS/util/explorer.sh'
+# substitute current directory to the specified drive
+substc() {
+    drive=$1
+    if [[ -z $drive ]]; then
+        drive='b:'
+    fi
+    subst $drive /d
+    echo "Aliasing $drive to `pwd`"
+    cygpath -w `pwd` | sed 's_\\_\/_g' | xargs subst $drive
+}
+alias wind='cygpath -w `pwd`'
 
 #util
 alias gmail='$MY_SCRIPTS/util/gmail.sh'
