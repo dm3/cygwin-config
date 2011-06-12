@@ -11,7 +11,6 @@ source "$MY_SCRIPTS/git/git-completion.sh"
 source "$MY_SCRIPTS/bash/aliases.sh"
 source "$MY_SCRIPTS/bash/functions.sh"
 source "$MY_SCRIPTS/bash/shell.sh"
-source "$MY_SCRIPTS/ssh/start_agent.sh"
 
 # Shell Options
 # #############

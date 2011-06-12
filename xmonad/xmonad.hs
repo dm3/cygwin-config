@@ -25,10 +25,11 @@ main = xmonad =<< xmobar (withUrgencyHook NoUrgencyHook $ myConfig)
 myConfig = defaultConfig {
 	  terminal	= myTerminal
         , borderWidth 	= 3
-	, layoutHook 	= avoidStruts $ myLayout
+	, layoutHook 	= avoidStruts $ smartBorders (myLayout)
 	, workspaces 	= myWorkspaces
         , modMask	= myMod
 	, keys 		= myKeys
+        , manageHook    = myManageHook
         }
 
 -- win key
@@ -41,39 +42,34 @@ myTerminal = "urxvt"
 myWorkspaces = ["1:web", "2:code", "3:chat", "4:pdf", "5:doc", "6:vbox" ,"7:games", "8:vid", "9:gimp"]
 
 -- layouts
-myLayout = autoMaster 1 (1/100) Grid ||| noBorders Full ||| noBorders myTab
+myLayout = noBorders Full ||| noBorders myTab ||| autoMaster 1 (1/100) Grid
 
 myTab = tabbed shrinkText (theme smallClean)
 
 -- hooks
 -- automaticly switching app to workspace
 myManageHook = scratchpadManageHook (W.RationalRect 0.25 0.375 0.5 0.35) <+> ( composeAll . concat $
-        [[isFullscreen --> doFullFloat
-        , className =? "Xmessage" --> doCenterFloat
-        , className =? "Zenity" --> doCenterFloat
-        , className =? "feh" --> doCenterFloat
-
-        , className =? "uzbl" --> doShift "1:web"
-        , className =? "vimprobable" --> doShift "1:web"
-        , className =? "Firefox" --> doShift "1:web"
+        [[
+          className =? "firefox" --> doShift "1:web"
 
         , className =? "eclipse" --> doShift "2:code"
 
         , className =? "Pidgin" --> doShift "3:chat"
         , className =? "Skype" --> doShift "3:chat"
+        , title =? "irssi" --> doShift "3:chat"
 
         , className =? "Apvlv" --> doShift "4:pdf"
-        , className =? "Evince" --> doShift "4:pdf"
         , className =? "Epdfview" --> doShift "4:pdf"
 
         , className =? "OpenOffice.org 3.1" --> doShift "5:doc"
-        , className =? "Gimp" --> doShift "9:gimp"
-        , className =? "MPlayer" --> doShift "8:vid"
-        , className =? "VirtualBox"  --> doShift "6:virtual"
-        , className =? "Remmina" --> doShift "6:vbox"]
 
-        ]
-        ) <+> manageDocks
+        , className =? "MPlayer" --> doShift "8:vid"
+
+        , className =? "Gimp" --> doShift "9:gimp"
+
+        , isFullscreen --> doFullFloat
+        , isDialog --> doCenterFloat
+        ]]) <+> manageDocks
 
 -- keys
 myKeys x = M.union (keys defaultConfig x) (M.fromList (newKeys x))
