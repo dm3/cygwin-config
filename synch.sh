@@ -10,7 +10,6 @@ else
         IN)
             cp ~/.bashrc .
             cp ~/.inputrc .
-            cp ~/.gitconfig .
             cp ~/.ctags .
             if [[ -n "$CYGWIN_HOME" ]]; then
                 cp ~/.Xdefaults ./.Xdefaults.CYGWIN
@@ -26,7 +25,6 @@ else
         OUT)
             cp .bashrc ~
             cp .inputrc ~
-            cp .gitconfig ~
 	    cp .ctags ~
             if [[ -n "$CYGWIN_HOME" ]]; then
                 cp .Xdefaults.CYGWIN ~/.Xdefaults
