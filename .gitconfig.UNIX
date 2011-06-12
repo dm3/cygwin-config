@@ -19,6 +19,7 @@
 	st = status
 	rmall = !git ls-files --deleted | xargs git rm
 	addrm = !git add . && git rmall
+        out = log origin/master..HEAD
 	addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
 	svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
 	svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh

@@ -5,7 +5,7 @@
 	tool = gvim
 
 [mergetool "gvim"]
-	cmd = "$MY_SCRIPTS/git/gvim-diff.sh $PWD/$LOCAL $PWD/$BASE $PWD/$REMOTE $PWD/$MERGED" 
+	cmd = "$MY_SCRIPTS/git/gvim-diff.sh $PWD/$LOCAL $PWD/$BASE $PWD/$REMOTE $PWD/$MERGED"
 
 [color]
 	ui = auto
@@ -20,6 +20,7 @@
 	co = checkout
 	br = branch
 	st = status
+        out = log origin/master..HEAD
 	rmall = !git ls-files --deleted | xargs git rm
 	addrm = !git add . && git rmall
 	addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
