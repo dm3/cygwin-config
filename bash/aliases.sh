@@ -45,6 +45,7 @@ alias mvnchversion='$MY_SCRIPTS/mvn/version.sh'
 alias mcp='mvn clean package'
 alias mci='mvn clean install'
 alias mct='mvn clean test'
+alias mew='mvn prepare-package war:exploded'
 
 #svn
 alias svnsw='$MY_SCRIPTS/svn/switch_to.sh'
@@ -57,6 +58,10 @@ alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ 
 alias sst='svn st'
 alias si='svn info'
 alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
+
+#hg
+alias hrvn='hg revert --no-backup'
+alias hmc='hg ci -m "default@team -> default@dev"'
 
 #windows
 alias ex='$MY_SCRIPTS/util/explorer.sh'
@@ -71,6 +76,7 @@ substc() {
     cygpath -w `pwd` | sed 's_\\_\/_g' | xargs subst $drive
 }
 alias wind='cygpath -w `pwd`'
+alias cmdh='cygstart cmd'
 
 #util
 alias gmail='$MY_SCRIPTS/util/gmail.sh'
