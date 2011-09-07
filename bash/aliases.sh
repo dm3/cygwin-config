@@ -61,22 +61,3 @@ alias hrvn='hg revert --no-backup'
 alias gmail='$MY_SCRIPTS/util/gmail.sh'
 alias mntcd="sudo mount /dev/scd0 /mnt/cd"
 alias mntusb="sudo mount /dev/sdb1 /mnt/usb1"
-
-# cygwin
-alias c:='cd /cygdrive/c'
-alias d:='cd /cygdrive/d'
-
-alias wind='cygpath -w `pwd`'
-alias cmdh='cygstart cmd'
-
-alias ex='$MY_SCRIPTS/util/explorer.sh'
-# substitute current directory to the specified drive
-substc() {
-    drive=$1
-    if [[ -z $drive ]]; then
-        drive='b:'
-    fi
-    subst $drive /d
-    echo "Aliasing $drive to `pwd`"
-    cygpath -w `pwd` | sed 's_\\_\/_g' | xargs subst $drive
-}

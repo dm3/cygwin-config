@@ -14,11 +14,7 @@ urxvt.jumpScroll: True
 !places a hardcopy in home dir when print is pressed
 urxvt.print-pipe: cat > $(TMPDIR=$HOME mktemp urxvt.XXXXX)
 
-urxvt.perl-ext-common: default,selection,matcher,searchable-scrollback<M-s>/
-  /* default: load default perl extensions
-   * selection: intelligent selection (words, urls)
-   * matcher: underlines matched text and executes program upon click
-   * searchable-scro...: adds regex search to scrollback buffer */
+urxvt.perl-ext-common: default,selection,matcher
 urxvt*matcher.button: 1                   /* match left-mouse-button */
 urxvt*urlLauncher: firefox                /* launch firefox on matched text */
 
