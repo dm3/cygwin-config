@@ -1,8 +1,8 @@
 #!/bin/bash
 MAXDEPTH=5
-depth=0
 
 function check() {
+    depth=0
     currentdir=`pwd`
     filter=`expr match "$currentdir" '.*target.*'`
 

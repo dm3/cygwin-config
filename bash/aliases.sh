@@ -25,9 +25,6 @@ alias ll='ls -l'                              # long list
 alias la='ls -A'                              # all but . and ..
 alias l='ls -CF'                              #
 
-alias c:='cd /cygdrive/c'
-alias d:='cd /cygdrive/d'
-
 alias vi='vim'
 alias cls='clear'
 
@@ -52,8 +49,6 @@ alias svnsw='$MY_SCRIPTS/svn/switch_to.sh'
 alias svnserver='$MY_SCRIPTS/svn/svnversion.py'
 alias sbtowc='$MY_SCRIPTS/svn/b2wc.sh'
 alias swctob='$MY_SCRIPTS/svn/wc2b.sh'
-alias supwc='$MY_SCRIPTS/svn/updatewcfromtrunk.sh'
-alias sgotowc='svnsw branches/my_working_copy'
 alias sbranchstart="svn log -q --stop-on-copy | grep '^r[0-9]' | sed 's/^r//;s/ |.*//' | tail -n 1"
 alias sst='svn st'
 alias si='svn info'
@@ -61,9 +56,19 @@ alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 
 #hg
 alias hrvn='hg revert --no-backup'
-alias hmc='hg ci -m "default@team -> default@dev"'
 
-#windows
+#util
+alias gmail='$MY_SCRIPTS/util/gmail.sh'
+alias mntcd="sudo mount /dev/scd0 /mnt/cd"
+alias mntusb="sudo mount /dev/sdb1 /mnt/usb1"
+
+# cygwin
+alias c:='cd /cygdrive/c'
+alias d:='cd /cygdrive/d'
+
+alias wind='cygpath -w `pwd`'
+alias cmdh='cygstart cmd'
+
 alias ex='$MY_SCRIPTS/util/explorer.sh'
 # substitute current directory to the specified drive
 substc() {
@@ -75,10 +80,3 @@ substc() {
     echo "Aliasing $drive to `pwd`"
     cygpath -w `pwd` | sed 's_\\_\/_g' | xargs subst $drive
 }
-alias wind='cygpath -w `pwd`'
-alias cmdh='cygstart cmd'
-
-#util
-alias gmail='$MY_SCRIPTS/util/gmail.sh'
-alias mntcd="sudo mount /dev/scd0 /mnt/cd"
-alias mntusb="sudo mount /dev/sdb1 /mnt/usb1"
