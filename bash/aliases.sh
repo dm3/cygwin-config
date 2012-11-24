@@ -56,8 +56,3 @@ alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 
 #hg
 alias hrvn='hg revert --no-backup'
-
-#util
-alias gmail='$MY_SCRIPTS/util/gmail.sh'
-alias mntcd="sudo mount /dev/scd0 /mnt/cd"
-alias mntusb="sudo mount /dev/sdb1 /mnt/usb1"
