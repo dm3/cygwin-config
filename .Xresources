@@ -1,4 +1,4 @@
-#include "/home/dm3/my_scripts/looks/look-zenburn.xrdb"
+#include "$MY_SCRIPTS/looks/look-zenburn.xrdb"
 
 Xft*dpi: 99
 Xft*antialias: true

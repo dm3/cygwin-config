@@ -11,6 +11,7 @@
     diff = auto
 
 [alias]
+    stage = add
     unstage = reset HEAD
     ci = commit
     co = checkout
@@ -20,13 +21,14 @@
     d = diff
     a = add -u
     aa = add -A
+    rmall = !git ls-files --deleted | xargs git rm
     out = log origin/master..HEAD
     in = log HEAD..origin/master
     addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
     svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
     svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
 
-    lg = log --pretty=tformat:'%h %Cblue%cr%Creset %cn %Cgreen%s%Creset'
+    lg = log --pretty=format:"%C(yellow)%h%Cred%d%Creset\\ %cn\\ %Cblue%cr%Creset\\ %Cgreen%s%Creset" --decorate
     lgraph = !git lg --graph
 
 [core]
