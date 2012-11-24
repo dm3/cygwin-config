@@ -1,35 +1,36 @@
 [apply]
-	whitespace = fix
+    whitespace = fix
 
 [merge]
-	tool = vimdiff
+    tool = vimdiff
 
 [color]
-	ui = auto
-	status = auto
-	branch = auto
-	diff = auto
+    ui = auto
+    status = auto
+    branch = auto
+    diff = auto
 
 [alias]
-	stage = add
-	unstage = reset HEAD
-	ci = commit
-	co = checkout
-	br = branch
-	st = status
-	rmall = !git ls-files --deleted | xargs git rm
-	addrm = !git add . && git rmall
-        out = log origin/master..HEAD
-	addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
-	svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
-	svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
+    unstage = reset HEAD
+    ci = commit
+    co = checkout
+    br = branch
+    st = status
+    dc = diff --cached
+    d = diff
+    a = add -u
+    aa = add -A
+    out = log origin/master..HEAD
+    in = log HEAD..origin/master
+    addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
+    svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
+    svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
 
-	lg = log --pretty=tformat:'%h %Cblue%cr%Creset %cn %Cgreen%s%Creset'
-	lgraph = !git lg --graph
+    lg = log --pretty=tformat:'%h %Cblue%cr%Creset %cn %Cgreen%s%Creset'
+    lgraph = !git lg --graph
 
 [core]
-	editor = vim
+    editor = vim
 
 [user]
-	name = dm3
-	email = deadmoro3@gmail.com
+    name = dm3
