@@ -18,16 +18,22 @@
     br = branch
     st = status
     dc = diff --cached
-    d = diff
-    a = add -u
+    dw = diff --word-diff
     aa = add -A
     rmall = !git ls-files --deleted | xargs git rm
-    out = log origin/master..HEAD
-    in = log HEAD..origin/master
+
+    # Grep from repository root
+    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
+
     addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
+
     svnup = !"$MY_SCRIPTS"/git/svn_up_branch.sh
     svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
 
+    out = log --oneline --decorate origin/master..HEAD
+    in = !git fetch || git log HEAD..origin/master
+
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d%Creset\\ %cn\\ %Cblue%cr%Creset\\ %Cgreen%s%Creset" --decorate --numstat
     lg = log --pretty=format:"%C(yellow)%h%Cred%d%Creset\\ %cn\\ %Cblue%cr%Creset\\ %Cgreen%s%Creset" --decorate
     lgraph = !git lg --graph
 
