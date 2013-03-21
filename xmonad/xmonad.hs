@@ -21,6 +21,8 @@ import XMonad.Util.EZConfig
 import XMonad.Prompt
 import XMonad.Prompt.Window
 
+import Data.List
+
 main = xmonad myConfig
 
 myConfig = gnomeConfig {
@@ -47,9 +49,15 @@ myLayout = noBorders Full ||| noBorders myTab ||| autoMaster 1 (1/100) G.Grid ||
 myTab = tabbed shrinkText (theme smallClean)
 
 myManageHook = composeAll [
-      manageHook gnomeConfig
-    , isFullscreen --> doFullFloat
+      manageHook gnomeConfig,
+      isFullscreen --> doFullFloat,
+      -- Intellij popups are titled winXXX (XXX are numbers from 1 to +inf)
+      startsWith title "win" --> doCenterFloat,
+      isDialog --> doCenterFloat
     ]
+
+startsWith :: Eq a => Query [a] -> [a] -> Query Bool
+startsWith q name = fmap (isPrefixOf name) q
 
 myKeysP =
   [

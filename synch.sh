@@ -8,6 +8,7 @@ else
 
     case "$1" in
         IN)
+            cp ~/.vimrc .
             cp ~/.bashrc .
             cp ~/.inputrc .
             cp ~/.ctags .
@@ -18,6 +19,7 @@ else
             cat ~/.Xresources | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xresources
         ;;
         OUT)
+            cp .vimrc ~
             cp .bashrc ~
             cp .inputrc ~
 	    cp .ctags ~

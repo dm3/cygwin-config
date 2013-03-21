@@ -14,6 +14,7 @@
     stage = add
     unstage = reset HEAD
     ci = commit
+    cia = commit --amend
     co = checkout
     br = branch
     st = status
@@ -31,7 +32,7 @@
     svnpush = !"$MY_SCRIPTS"/git/svn_push_branch.sh
 
     out = log --oneline --decorate origin/master..HEAD
-    in = !git fetch || git log HEAD..origin/master
+    in = !git fetch || git lg ..origin/master
 
     ll = log --pretty=format:"%C(yellow)%h%Cred%d%Creset\\ %cn\\ %Cblue%cr%Creset\\ %Cgreen%s%Creset" --decorate --numstat
     lg = log --pretty=format:"%C(yellow)%h%Cred%d%Creset\\ %cn\\ %Cblue%cr%Creset\\ %Cgreen%s%Creset" --decorate
@@ -41,4 +42,5 @@
     editor = vim
 
 [user]
-    name = dm3
+    name = Vadim Platonov
+    email = vadim@inventi.lt
