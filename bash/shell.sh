@@ -12,7 +12,7 @@ export HISTSIZE=10000
 # Don't put duplicate lines/spaces in the history.
 export HISTCONTROL=ignoreboth
 # Ignore some controlling instructions
-export HISTIGNORE="&:[ ]*:exit:bg:fg:ls:[ \t]*"
+export HISTIGNORE="&:exit:bg:fg:ls"
 
 export CDPATH=.:~
 
