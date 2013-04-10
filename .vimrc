@@ -10,12 +10,20 @@ Bundle 'gmarik/vundle'
 
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'derekwyatt/vim-scala'
 
+" Clojure
+"Bundle 'guns/vim-clojure-static'
+"Bundle 'tpope/vim-fireplace'
 Bundle 'zaiste/VimClojure'
 let vimclojure#HighlightBuiltins=1
-let vimclojure#ParenRainbow=1
+let vimclojure#ParenRainbow=0
 let vimclojure#WantNailgun=1
 let vimclojure#SplitPos="bottom"
+
+Bundle 'kien/rainbow_parentheses.vim'
 
 Bundle 'jnurmine/Zenburn'
 colorscheme zenburn
@@ -179,6 +187,12 @@ augroup trailing
     au!
     au InsertEnter * :set listchars-=trail:⌴
     au InsertLeave * :set listchars+=trail:⌴
+augroup END
+
+augroup clojure
+    au!
+    au VimEnter * RainbowParenthesesToggle
+    au Syntax clojure RainbowParenthesesLoadRound
 augroup END
 
 " }}}
