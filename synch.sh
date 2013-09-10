@@ -12,8 +12,6 @@ else
             cp ~/.bashrc .
             cp ~/.inputrc .
             cp ~/.ctags .
-            cp ~/.xinitrc .
-            cp ~/.xmobarrc ./xmobar
             cp ~/.xmonad/xmonad.hs ./xmonad/
             cp ~/.gitconfig ./.gitconfig
             cat ~/.Xresources | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xresources
@@ -23,8 +21,6 @@ else
             cp .bashrc ~
             cp .inputrc ~
 	    cp .ctags ~
-            cp .xinitrc ~
-            cp xmobar/.xmobarrc ~
             cp xmonad/* ~/.xmonad/
             cp .gitconfig ~/.gitconfig
             cat .Xresources | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xresources
