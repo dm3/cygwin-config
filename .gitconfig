@@ -44,3 +44,5 @@
 [user]
     name = Vadim Platonov
     email = vadim@inventi.lt
+[push]
+	default = upstream

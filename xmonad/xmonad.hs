@@ -8,12 +8,16 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.ICCCMFocus
+import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Tabbed
 import XMonad.Layout.TwoPane
 import XMonad.Layout.Grid as G
 import XMonad.Layout.AutoMaster
+
+import XMonad.StackSet(RationalRect(..))
 
 import XMonad.Util.Themes
 import XMonad.Util.EZConfig
@@ -32,6 +36,8 @@ myConfig = gnomeConfig {
 	, workspaces 	= myWorkspaces
         , modMask	= myMod
         , manageHook    = myManageHook
+        , logHook       = takeTopFocus
+        , startupHook   = setWMName "LG3D"
         } `additionalKeysP` myKeysP
 
 -- win key
@@ -52,7 +58,7 @@ myManageHook = composeAll [
       manageHook gnomeConfig,
       isFullscreen --> doFullFloat,
       -- Intellij popups are titled winXXX (XXX are numbers from 1 to +inf)
-      startsWith title "win" --> doCenterFloat,
+      startsWith title "win" --> (doRectFloat $ RationalRect 0.25 0.25 0.5 0.5),
       isDialog --> doCenterFloat
     ]
 

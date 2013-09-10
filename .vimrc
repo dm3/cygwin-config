@@ -15,18 +15,36 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 
 " Clojure
-"Bundle 'guns/vim-clojure-static'
-"Bundle 'tpope/vim-fireplace'
-Bundle 'zaiste/VimClojure'
-let vimclojure#HighlightBuiltins=1
-let vimclojure#ParenRainbow=0
-let vimclojure#WantNailgun=1
-let vimclojure#SplitPos="bottom"
+Bundle 'guns/vim-clojure-static'
+Bundle 'guns/vim-sexp'
+Bundle 'tpope/vim-fireplace'
+nnoremap <Leader>el :Eval<CR>
+nnoremap <Leader>ef :%Eval<CR>
 
 Bundle 'kien/rainbow_parentheses.vim'
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['red',         'RoyalBlue3'],
+    \ ['yellow',      'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
 
 Bundle 'jnurmine/Zenburn'
 colorscheme zenburn
+command Light colorscheme shine
+command Dark colorscheme zenburn
 " TODO: evaluate matchit, ctrlp
 " }}}
 
@@ -45,7 +63,11 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " Mappings {{{
 
 let mapleader = "\\"
-let maplocalleader = "\\"
+let maplocalleader = "`"
+
+" Yank to clipboard/paste from clipboard via xclip
+vnoremap <F6> :!xclip -f -sel clip<CR>
+nnoremap <F7> :-1r !xclip -o -sel clip<CR>
 
 map Y y$
 map <tab> %
@@ -60,7 +82,7 @@ noremap <silent><Leader>/ :nohls<CR>
 
 " wrap/nowrap line toggle
 nnoremap <silent> <leader>w :set wrap! wrap?<cr>
-nnoremap <silent> <leader>a :NERDTreeToggle<cr>
+nnoremap <silent> <leader>q :NERDTreeToggle<cr>
 
 " Standard split navigation
 nnoremap <c-l> <c-w>l
@@ -82,7 +104,7 @@ vnoremap Q gq
 
 " Source current line
 vnoremap <leader>L y:execute @@<cr>
-" Source visual selection 
+" Source visual selection
 nnoremap <leader>L ^vg_y:execute @@<cr>
 
 " Quick editing {{{
@@ -173,7 +195,7 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 
 set foldlevelstart=0
 
-" Space to toggle folds.
+" Enter to toggle folds.
 nnoremap <Enter> za
 vnoremap <Enter> za
 
