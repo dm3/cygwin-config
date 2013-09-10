@@ -1,5 +1,8 @@
 export PATH="$HOME/.rbenv/bin:/opt/mono/bin:/opt/vagrant/bin:$PATH"
-eval "$(rbenv init -)"
+
+if [ -x rbenv ]; then
+    eval "$(rbenv init -)"
+fi
 
 export MY_SCRIPTS="$HOME/my_scripts"
 source "$MY_SCRIPTS/git/git-completion.sh"
