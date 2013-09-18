@@ -14,6 +14,7 @@ else
             cp ~/.ctags .
             cp ~/.xmonad/xmonad.hs ./xmonad/
             cp ~/.gitconfig ./.gitconfig
+            cp -r ~/.irssi/* ./irssi/
             cat ~/.Xresources | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xresources
         ;;
         OUT)
@@ -23,6 +24,7 @@ else
 	    cp .ctags ~
             cp xmonad/* ~/.xmonad/
             cp .gitconfig ~/.gitconfig
+            cp -r ./irssi/* ~/.irssi/
             cat .Xresources | sed "s/\$MY_SCRIPTS/$dir/" > ~/.Xresources
         ;;
     esac

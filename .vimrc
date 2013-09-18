@@ -14,6 +14,10 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 
+Bundle 'kien/ctrlp.vim'
+Bundle 'lastpos.vim'
+Bundle 'ZoomWin'
+
 " Clojure
 Bundle 'guns/vim-clojure-static'
 Bundle 'guns/vim-sexp'
@@ -21,6 +25,7 @@ Bundle 'tpope/vim-fireplace'
 nnoremap <Leader>el :Eval<CR>
 nnoremap <Leader>ef :%Eval<CR>
 
+" Styling
 Bundle 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
@@ -43,6 +48,7 @@ let g:rbpt_colorpairs = [
 
 Bundle 'jnurmine/Zenburn'
 colorscheme zenburn
+let g:zenburn_force_dark_Background = 1
 command Light colorscheme shine
 command Dark colorscheme zenburn
 " TODO: evaluate matchit, ctrlp
@@ -210,6 +216,9 @@ augroup trailing
     au InsertEnter * :set listchars-=trail:⌴
     au InsertLeave * :set listchars+=trail:⌴
 augroup END
+
+" Remove trailing whitespace
+autocmd FileType xml,clojure,java,sql autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 augroup clojure
     au!

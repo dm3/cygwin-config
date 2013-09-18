@@ -15,8 +15,8 @@ urxvt.jumpScroll: True
 urxvt.print-pipe: cat > $(TMPDIR=$HOME mktemp urxvt.XXXXX)
 
 urxvt.perl-ext-common: default,selection,matcher
-urxvt*matcher.button: 1                   /* match left-mouse-button */
-urxvt*urlLauncher: firefox                /* launch firefox on matched text */
+urxvt*matcher.button: 1 /* match left-mouse-button */
+urxvt*urlLauncher: chromium
 
 urxvt.cursorcolor:     green
 urxvt.cursorcolor1:    pink
