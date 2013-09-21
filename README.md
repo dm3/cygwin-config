@@ -10,3 +10,8 @@
     git clone git@github.com:dm3/cygwin-config ~/my_scripts
     export MY_SCRIPTS="~/my_scripts"
     cd ~/my_scripts && ./synch.sh OUT
+
+## Tools
+
+1. Music player: **mpd** + **mpc**
+2. Torrent client: **qbittorrent-nox**

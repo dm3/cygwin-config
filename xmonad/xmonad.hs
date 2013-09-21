@@ -1,6 +1,8 @@
 import XMonad
 import XMonad.Core
+
 import XMonad.Actions.SpawnOn
+import XMonad.Actions.Submap
 
 import XMonad.Config.Gnome
 
@@ -24,8 +26,10 @@ import XMonad.Util.EZConfig
 
 import XMonad.Prompt
 import XMonad.Prompt.Window
+import XMonad.Prompt.Shell
 
 import Data.List
+import qualified Data.Map as M
 
 main = xmonad myConfig
 
@@ -71,4 +75,17 @@ myKeysP =
      ("M-p", spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
      -- go to window prompt
      , ("M-S-g", windowPromptGoto defaultXPConfig { autoComplete = Just 500000 })
+     -- control mpc
+     , ("M-m", submap . M.fromList $
+        [ ((0, xK_n),     spawn "mpc next")
+        , ((0, xK_p),     spawn "mpc prev")
+        , ((0, xK_r),     spawn "mpc random")
+        , ((0, xK_space), spawn "mpc toggle")
+        , ((0, xK_s),     spawn "mpc | xmessage -file - -timeout 4")
+        ])
+     , ("M-/", submap . M.fromList $
+        [ ((0, xK_Left),     spawn "setxkbmap us")
+        , ((0, xK_Down),     spawn "setxkbmap lt")
+        , ((0, xK_Right),     spawn "setxkbmap ru -variant phonetic")
+        ])
  ]

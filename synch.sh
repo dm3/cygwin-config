@@ -12,6 +12,7 @@ else
             cp ~/.bashrc .
             cp ~/.inputrc .
             cp ~/.ctags .
+            cp ~/.mpdconf .
             cp ~/.xmonad/xmonad.hs ./xmonad/
             cp ~/.gitconfig ./.gitconfig
             cp -r ~/.irssi/* ./irssi/
@@ -22,6 +23,7 @@ else
             cp .bashrc ~
             cp .inputrc ~
 	    cp .ctags ~
+            cp .mpdconf ~
             cp xmonad/* ~/.xmonad/
             cp .gitconfig ~/.gitconfig
             cp -r ./irssi/* ~/.irssi/

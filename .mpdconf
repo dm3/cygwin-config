@@ -1,0 +1,70 @@
+# See the mpd.conf man page for a more detailed description of each parameter.
+
+# Files and directories #######################################################
+music_directory "/home/dm3/music"
+playlist_directory "/home/dm3/.mpd/playlist"
+db_file "/home/dm3/.mpd/db"
+log_file "/home/dm3/.mpd/log"
+pid_file "/home/dm3/.mpd/run"
+state_file "/home/dm3/.mpd/state"
+sticker_file "~/.mpd/sticker"
+###############################################################################
+
+
+# General music daemon options ################################################
+user "dm3"
+bind_to_address "localhost"
+#bind_to_address		"/run/mpd/socket"
+#port				"6600"
+# default/secure/verbose
+#log_level			"default"
+restore_paused "yes"
+#save_absolute_paths_in_playlists	"no"
+#metadata_to_use	"artist,album,title,track,name,genre,date,composer,performer,disc"
+#auto_update    "yes"
+#auto_update_depth "3"
+###############################################################################
+
+
+# Input #######################################################################
+input {
+        plugin "curl"
+}
+###############################################################################
+
+# Audio Output ################################################################
+audio_output {
+	type		"alsa"
+	name		"My ALSA Device"
+}
+#audio_output_format		"44100:16:2"
+###############################################################################
+
+
+# Normalization automatic volume adjustments ##################################
+#replaygain			"album"
+#replaygain_preamp		"0"
+#replaygain_missing_preamp	"0"
+#replaygain_limit		"yes"
+#volume_normalization		"no"
+###############################################################################
+
+
+# MPD Internal Buffering ######################################################
+#audio_buffer_size		"2048"
+#buffer_before_play		"10%"
+###############################################################################
+
+
+# Resource Limitations ########################################################
+#connection_timeout		"60"
+#max_connections		"10"
+#max_playlist_length		"16384"
+#max_command_list_size		"2048"
+#max_output_buffer_size		"8192"
+###############################################################################
+
+# Character Encoding ##########################################################
+filesystem_charset		"UTF-8"
+id3v1_encoding			"UTF-8"
+###############################################################################

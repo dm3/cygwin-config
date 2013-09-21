@@ -21,6 +21,8 @@
     dc = diff --cached
     dw = diff --word-diff
     aa = add -A
+    prb = pull --rebase
+    rbc = rebase --continue
     rmall = !git ls-files --deleted | xargs git rm
 
     # Grep from repository root
@@ -44,5 +46,6 @@
 [user]
     name = Vadim Platonov
     email = vadim@inventi.lt
+
 [push]
-	default = upstream
+    default = upstream
