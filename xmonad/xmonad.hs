@@ -10,7 +10,6 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.NoBorders
@@ -33,22 +32,22 @@ import qualified Data.Map as M
 
 main = xmonad myConfig
 
+-- Config which supports java swing apps with xmonad 0.11+
 myConfig = gnomeConfig {
-	  terminal	= myTerminal
-        , borderWidth 	= 3
-	, layoutHook 	= avoidStruts $ smartBorders (myLayout)
-	, workspaces 	= myWorkspaces
-        , modMask	= myMod
-        , manageHook    = myManageHook
-        , logHook       = takeTopFocus
-        , startupHook   = setWMName "LG3D"
-        } `additionalKeysP` myKeysP
+    terminal= myTerminal
+        , borderWidth = 3
+        , layoutHook = avoidStruts $ smartBorders (myLayout)
+        , workspaces = myWorkspaces
+        , modMask = myMod
+        , manageHook = myManageHook
+        , startupHook = setWMName "LG3D"
+} `additionalKeysP` myKeysP
 
 -- win key
 myMod = mod4Mask
 
 -- terminal
-myTerminal = "urxvt"
+myTerminal = "urxvtcd"
 
 -- workspaces
 myWorkspaces = ["1:web", "2:code", "3:chat", "4:pdf", "5:doc", "6:vbox" ,"7:games", "8:vid", "9:gimp"]
@@ -62,16 +61,15 @@ myManageHook = composeAll [
       manageHook gnomeConfig,
       isFullscreen --> doFullFloat,
       -- Intellij popups are titled winXXX (XXX are numbers from 1 to +inf)
-      startsWith title "win" --> (doRectFloat $ RationalRect 0.25 0.25 0.5 0.5),
+      --startsWith title "win" --> (doRectFloat $ RationalRect 0 0 0.5 0.5),
       isDialog --> doCenterFloat
     ]
 
 startsWith :: Eq a => Query [a] -> [a] -> Query Bool
 startsWith q name = fmap (isPrefixOf name) q
 
-myKeysP =
-  [
-     -- meta p spawns dmenu
+myKeysP = [
+     -- spawn dmenu
      ("M-p", spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
      -- go to window prompt
      , ("M-S-g", windowPromptGoto defaultXPConfig { autoComplete = Just 500000 })
@@ -81,11 +79,12 @@ myKeysP =
         , ((0, xK_p),     spawn "mpc prev")
         , ((0, xK_r),     spawn "mpc random")
         , ((0, xK_space), spawn "mpc toggle")
-        , ((0, xK_s),     spawn "mpc | xmessage -file - -timeout 4")
+        , ((0, xK_s),     spawn "mpc | xmessage -file - -timeout 3")
         ])
+     -- input language
      , ("M-/", submap . M.fromList $
         [ ((0, xK_Left),     spawn "setxkbmap us")
         , ((0, xK_Down),     spawn "setxkbmap lt")
-        , ((0, xK_Right),     spawn "setxkbmap ru -variant phonetic")
+        , ((0, xK_Right),    spawn "setxkbmap ru -variant phonetic")
         ])
- ]
+    ]
