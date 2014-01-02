@@ -62,7 +62,7 @@ myManageHook = composeAll [
 
 myKeysP = [
      -- spawn dmenu
-     ("M-p", spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+     ("M-p", spawn "dmenu_run")
      -- go to window prompt
      , ("M-S-g", windowPromptGoto defaultXPConfig { autoComplete = Just 500000 })
      -- control mpc
