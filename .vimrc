@@ -14,9 +14,13 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 
+Bundle 'drmikehenry/vim-fixkey'
 Bundle 'kien/ctrlp.vim'
 Bundle 'lastpos.vim'
 Bundle 'ZoomWin'
+
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'sukima/xmledit'
 
 " Clojure
 Bundle 'guns/vim-clojure-static'

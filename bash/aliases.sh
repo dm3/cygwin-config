@@ -56,3 +56,13 @@ alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 
 #hg
 alias hrvn='hg revert --no-backup'
+
+#mpc
+mplay() {
+    mpc playlist -f "%position% %title%" | grep -i "$1" | head -n1 | \
+        cut - -d " " -f 1 | xargs mpc play
+}
+
+mfind() {
+    mpc playlist -f "%position% %title%" | grep -i "$1"
+}

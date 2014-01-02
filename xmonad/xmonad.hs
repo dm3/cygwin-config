@@ -32,15 +32,13 @@ import qualified Data.Map as M
 
 main = xmonad myConfig
 
--- Config which supports java swing apps with xmonad 0.11+
 myConfig = gnomeConfig {
     terminal= myTerminal
-        , borderWidth = 3
+        , borderWidth = 2
         , layoutHook = avoidStruts $ smartBorders (myLayout)
         , workspaces = myWorkspaces
         , modMask = myMod
         , manageHook = myManageHook
-        , startupHook = setWMName "LG3D"
 } `additionalKeysP` myKeysP
 
 -- win key
@@ -56,17 +54,11 @@ myWorkspaces = ["1:web", "2:code", "3:chat", "4:pdf", "5:doc", "6:vbox" ,"7:game
 myLayout = noBorders Full ||| noBorders myTab ||| autoMaster 1 (1/100) G.Grid ||| Tall 1 (3/100) (2/3)
 
 myTab = tabbed shrinkText (theme smallClean)
-
 myManageHook = composeAll [
       manageHook gnomeConfig,
       isFullscreen --> doFullFloat,
-      -- Intellij popups are titled winXXX (XXX are numbers from 1 to +inf)
-      --startsWith title "win" --> (doRectFloat $ RationalRect 0 0 0.5 0.5),
       isDialog --> doCenterFloat
     ]
-
-startsWith :: Eq a => Query [a] -> [a] -> Query Bool
-startsWith q name = fmap (isPrefixOf name) q
 
 myKeysP = [
      -- spawn dmenu

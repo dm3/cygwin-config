@@ -1,6 +1,7 @@
 export PATH="$HOME/.rbenv/bin:/opt/mono/bin:/opt/vagrant/bin:$PATH"
+source .memoryrc
 
-if [ -x rbenv ]; then
+if [ -x "$(which rbenv)" ]; then
     eval "$(rbenv init -)"
 fi
 
