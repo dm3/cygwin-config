@@ -39,6 +39,9 @@ myConfig = gnomeConfig {
         , workspaces = myWorkspaces
         , modMask = myMod
         , manageHook = myManageHook
+        -- startup hook makes xmonad.desktop fail to be recognized, however
+        -- java GUI apps are grey rectangles without the setWMName
+        , startupHook = setWMName "LG3D"
 } `additionalKeysP` myKeysP
 
 -- win key
