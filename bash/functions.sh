@@ -19,3 +19,8 @@ function .. (){
 function so {
   eval "$@" |less -I~
 }
+
+# https://bbs.archlinux.org/viewtopic.php?id=44121
+function fontsize {
+    printf '\33]50;%s%d\007' "xft:Terminus:size=$1"
+}
