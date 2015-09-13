@@ -10,24 +10,30 @@ Bundle 'gmarik/vundle'
 
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'scrooloose/nerdtree'
+Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'majutsushi/tagbar'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'ekalinin/Dockerfile.vim'
 
+Bundle 'tpope/vim-surround'
 Bundle 'drmikehenry/vim-fixkey'
 Bundle 'kien/ctrlp.vim'
+Bundle 'mileszs/ack.vim'
 Bundle 'lastpos.vim'
 Bundle 'ZoomWin'
 
 Bundle 'vim-scripts/matchit.zip'
 Bundle 'sukima/xmledit'
+Bundle 'GEverding/vim-hocon'
 
 " Clojure
 Bundle 'guns/vim-clojure-static'
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-fireplace'
-nnoremap <Leader>el :Eval<CR>
-nnoremap <Leader>ef :%Eval<CR>
+Bundle 'tpope/vim-salve'
+Bundle 'typedclojure/vim-typedclojure'
 
 " Styling
 Bundle 'kien/rainbow_parentheses.vim'
@@ -55,13 +61,23 @@ colorscheme zenburn
 let g:zenburn_force_dark_Background = 1
 command Light colorscheme shine
 command Dark colorscheme zenburn
-" TODO: evaluate matchit, ctrlp
 " }}}
 
-" needed for syntax recognition
+" Syntax {{{
+
 syntax on
 filetype on
 filetype plugin indent on
+
+" let g:clojure_align_multiline_strings = 1
+" let g:clojure_fuzzy_indent = 1
+" let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+
+au BufRead,BufNewFile *.cljx setlocal filetype=clojure
+au BufRead,BufNewFile *.hl setlocal filetype=clojure
+au BufRead,BufNewFile *.boot setlocal filetype=clojure
+
+" }}}
 
 " Matches {{{
 
@@ -74,6 +90,13 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 let mapleader = "\\"
 let maplocalleader = "`"
+
+" Vim Sexp
+" Remap h and e so that they could be used later
+nmap <LocalLeader>k <Plug>(sexp_swap_list_backward)
+nmap <LocalLeader>j <Plug>(sexp_swap_list_forward)
+nnoremap <T-h> <Plug>(sexp_swap_element_backward)
+nnoremap <T-l> <Plug>(sexp_swap_element_forward)
 
 " Yank to clipboard/paste from clipboard via xclip
 vnoremap <F6> :!xclip -f -sel clip<CR>
