@@ -18,22 +18,14 @@ alias whence='type -a'                        # where, of a sort
 alias grep='grep --color'                     # show differences in colour
 
 # Some shortcuts for different directory listings
-alias ls='ls -hF --color=tty'                 # classify files in colour
+alias ls='ls -GFh'                          # classify files in colour
 alias dir='ls --color=auto --format=vertical'
 alias vdir='ls --color=auto --format=long'
-alias ll='ls -l'                              # long list
-alias la='ls -A'                              # all but . and ..
-alias l='ls -CF'                              #
+alias ll='ls -GAl'                              # long list
 
 alias vi='vim'
 alias cls='clear'
-
-alias size='du -sh'
-alias lines='$MY_SCRIPTS/util/count_lines.sh'
-findhere() { find . -path '**/target' -prune -o -path '**/.svn' -prune -o -name "$1" | xargs grep --color -E "$2" ;}
-
-# workaround for ghcii not being on the path
-alias ghcii=`whence ghci | sed 's/ghci is \(.*bin\)\/.*$/\1\/ghcii.sh/'`
+alias e='emacs'
 
 # mvn
 alias mvninstall='$MY_SCRIPTS/mvn/install_file.sh'
@@ -57,6 +49,10 @@ alias sdiff="svn diff --diff-cmd kdiff3 -x ' -qall '"
 #hg
 alias hrvn='hg revert --no-backup'
 
+#lein
+alias hideprof='mv ~/.lein/profiles.clj ~/.lein/profiles.clj.bak'
+alias unhideprof='mv ~/.lein/profiles.clj.bak ~/.lein/profiles.clj'
+
 #mpc
 mplay() {
     mpc playlist -f "%position% %title%" | grep -i "$1" | head -n1 | \
@@ -66,3 +62,6 @@ mplay() {
 mfind() {
     mpc playlist -f "%position% %title%" | grep -i "$1"
 }
+
+#osx
+alias on='open -a Numbers'
