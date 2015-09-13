@@ -15,6 +15,7 @@ else
             cp ~/.mpdconf .
             cp ~/.xmonad/xmonad.hs ./xmonad/
             cp ~/.gitconfig ./.gitconfig
+            cp ~/.spacemacs ./.spacemacs
             cp -r ~/.irssi/* ./irssi/
             cat ~/.Xresources | sed "s/$dir/\$MY_SCRIPTS/" > ./.Xresources
         ;;
@@ -24,6 +25,7 @@ else
             cp .inputrc ~
 	    cp .ctags ~
             cp .mpdconf ~
+            cp .spacemacs ~
             cp xmonad/* ~/.xmonad/
             cp .gitconfig ~/.gitconfig
             cp -r ./irssi/* ~/.irssi/
