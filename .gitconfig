@@ -20,7 +20,7 @@
     st = status
     dc = diff --cached
     dw = diff --word-diff
-    aa = add -A
+    aa = add -A :/
     prb = pull --rebase
     rbc = rebase --continue
     rmall = !git ls-files --deleted | xargs git rm
@@ -45,7 +45,7 @@
 
 [user]
     name = Vadim Platonov
-    email = vadim@inventi.lt
+    email = vadim.platonov@tuloscapital.com
 
 [push]
     default = upstream

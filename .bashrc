@@ -1,6 +1,3 @@
-export PATH="$HOME/.rbenv/bin:/opt/mono/bin:/opt/vagrant/bin:$PATH"
-source .memoryrc
-
 if [ -x "$(which rbenv)" ]; then
     eval "$(rbenv init -)"
 fi
@@ -14,5 +11,7 @@ source "$MY_SCRIPTS/git/git-completion.sh"
 source "$MY_SCRIPTS/bash/aliases.sh"
 source "$MY_SCRIPTS/bash/functions.sh"
 source "$MY_SCRIPTS/bash/shell.sh"
+source "$HOME/.memoryrc"
 
-alias ssh="TERM=linux ssh"
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+#alias ssh="TERM=linux ssh"
