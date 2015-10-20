@@ -22,11 +22,10 @@
      (auto-completion :variables auto-completion-complete-with-key-sequence "jk")
      emacs-lisp
      clojure
-     ;; (git :variables
-     ;;      git-gutter-use-fringe t)
-     ;; markdown
+     git
+     shell
+     markdown
      ;; org
-     ;; shell
      ;; syntax-checking
      ;; better-defaults
      )
@@ -174,8 +173,21 @@ layers configuration."
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
 
+  ;; windows
+  (global-set-key (kbd "C-j") 'evil-window-down)
+  (global-set-key (kbd "C-k") 'evil-window-up)
+  (global-set-key (kbd "C-l") 'evil-window-right)
+  (global-set-key (kbd "C-h") 'evil-window-left)
+
+  ;; Git
+  (setq magit-repository-directories '("~/projects/"))
+  (setq magit-repository-directories-depth 2)
+
   ;; Clojure
+  (setq clojure-defun-style-default-indent t)
   (setq cider-auto-select-error-buffer nil)
+  (setq cider-repl-history-size 10000)
+  (setq cider-repl-history-file "~/projects/.cider-repl-history")
 
   (dolist (m '(clojure-mode clojurec-mode clojurescript-mode clojurex-mode))
     (evil-leader/set-key-for-mode m
