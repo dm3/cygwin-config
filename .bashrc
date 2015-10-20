@@ -13,5 +13,5 @@ source "$MY_SCRIPTS/bash/functions.sh"
 source "$MY_SCRIPTS/bash/shell.sh"
 source "$HOME/.memoryrc"
 
-export PATH="/usr/local/sbin:/usr/local/bin:$PATH"
+export PATH="~/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH"
 #alias ssh="TERM=linux ssh"
