@@ -8,32 +8,45 @@ call vundle#rc()
 " Bundles {{{
 Bundle 'gmarik/vundle'
 
+" Navigation
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'majutsushi/tagbar'
+Bundle 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Bundle 'lastpos.vim'
+Bundle 'ZoomWin'
+Bundle 'kien/ctrlp.vim'
+
+" Filetypes
 Bundle 'plasticboy/vim-markdown'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'ekalinin/Dockerfile.vim'
-
-Bundle 'tpope/vim-surround'
-Bundle 'drmikehenry/vim-fixkey'
-Bundle 'kien/ctrlp.vim'
-Bundle 'mileszs/ack.vim'
-Bundle 'lastpos.vim'
-Bundle 'ZoomWin'
-
-Bundle 'vim-scripts/matchit.zip'
 Bundle 'sukima/xmledit'
 Bundle 'GEverding/vim-hocon'
+
+" Manipulation
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'tpope/vim-surround'
+Bundle 'drmikehenry/vim-fixkey'
+Bundle 'mileszs/ack.vim'
+Bundle 'vim-scripts/matchit.zip'
+Bundle 'godlygeek/tabular'
 
 " Clojure
 Bundle 'guns/vim-clojure-static'
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-salve'
+"Bundle 'tpope/vim-salve'
 Bundle 'typedclojure/vim-typedclojure'
+
+" Haskell
+Bundle 'neovimhaskell/haskell-vim'
+Bundle 'enomsg/vim-haskellConcealPlus'
+Bundle 'eagletmt/ghcmod-vim'
+Bundle 'eagletmt/neco-ghc'
+Bundle 'Twinside/vim-hoogle'
 
 " Styling
 Bundle 'kien/rainbow_parentheses.vim'
@@ -91,19 +104,116 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 let mapleader = "\\"
 let maplocalleader = "`"
 
-" Vim Sexp
+" Plugins {{{
+
+let g:haskell_tabular = 1
+
+" Tags {{{
+
+set tags=tags;/,codex.tags;/
+
+let g:tagbar_type_haskell = {
+    \ 'ctagsbin'  : 'hasktags',
+    \ 'ctagsargs' : '-x -c -o-',
+    \ 'kinds'     : [
+        \  'm:modules:0:1',
+        \  'd:data: 0:1',
+        \  'd_gadt: data gadt:0:1',
+        \  't:type names:0:1',
+        \  'nt:new types:0:1',
+        \  'c:classes:0:1',
+        \  'cons:constructors:1:1',
+        \  'c_gadt:constructor gadt:1:1',
+        \  'c_a:constructor accessors:1:1',
+        \  'ft:function types:1:1',
+        \  'fi:function implementations:0:1',
+        \  'o:others:0:1'
+    \ ],
+    \ 'sro'        : '.',
+    \ 'kind2scope' : {
+        \ 'm' : 'module',
+        \ 'c' : 'class',
+        \ 'd' : 'data',
+        \ 't' : 'type'
+    \ },
+    \ 'scope2kind' : {
+        \ 'module' : 'm',
+        \ 'class'  : 'c',
+        \ 'data'   : 'd',
+        \ 'type'   : 't'
+    \ }
+\ }
+
+" Generate haskell tags with codex and hscope
+map <leader>tg :!codex update --force<CR>:call system("git hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
+
+nnoremap <silent> <leader>tt :TagbarToggle<cr>
+" }}}
+
+" Haskell {{{
+
+" Use par for prettier line formatting
+set formatprg="PARINIT='rTbgqR B=.,?_A_a Q=_s>|' par\ -w72"
+
+" Use stylish haskell instead of par for haskell buffers
+autocmd FileType haskell let &formatprg="stylish-haskell"
+
+" Use buffer words as default tab completion
+let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
+
+" Show types in completion suggestions
+let g:necoghc_enable_detailed_browse = 1
+
+" Type of expression under cursor
+nmap <silent> <leader>ht :GhcModType<CR>
+" Insert type of expression under cursor
+nmap <silent> <leader>hT :GhcModTypeInsert<CR>
+" GHC errors and warnings
+nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>
+
+" Resolves ghcmod base directory
+au FileType haskell let g:ghcmod_use_basedir = getcwd()
+
+" Haskell Lint
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell'] }
+nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
+
+" Hoogle the word under the cursor
+nnoremap <silent> <leader>hh :Hoogle<CR>
+
+" Hoogle and prompt for input
+nnoremap <leader>hH :Hoogle
+
+" Hoogle for detailed documentation (e.g. "Functor")
+nnoremap <silent> <leader>hi :HoogleInfo<CR>
+
+" Hoogle for detailed documentation and prompt for input
+nnoremap <leader>hI :HoogleInfo
+
+" Hoogle, close the Hoogle window
+nnoremap <silent> <leader>hz :HoogleClose<CR>
+" }}}
+
+nnoremap <silent> <leader>q :NERDTreeToggle<cr>
+
+" Vim Sexp {{{
 " Remap h and e so that they could be used later
 nmap <LocalLeader>k <Plug>(sexp_swap_list_backward)
 nmap <LocalLeader>j <Plug>(sexp_swap_list_forward)
 nnoremap <T-h> <Plug>(sexp_swap_element_backward)
 nnoremap <T-l> <Plug>(sexp_swap_element_forward)
+" }}}
+" }}}
 
-" Yank to clipboard/paste from clipboard via xclip
-vnoremap <F6> :!xclip -f -sel clip<CR>
-nnoremap <F7> :-1r !xclip -o -sel clip<CR>
+" Copy and paste to os clipboard
+nmap <leader>y "*y
+vmap <leader>y "*y
+nmap <leader>d "*d
+vmap <leader>d "*d
+nmap <leader>p "*p
+vmap <leader>p "*p
 
 map Y y$
-map <tab> %
 
 inoremap jj <Esc>
 inoremap kk <Esc>
@@ -115,7 +225,6 @@ noremap <silent><Leader>/ :nohls<CR>
 
 " wrap/nowrap line toggle
 nnoremap <silent> <leader>w :set wrap! wrap?<cr>
-nnoremap <silent> <leader>q :NERDTreeToggle<cr>
 
 " Standard split navigation
 nnoremap <c-l> <c-w>l
