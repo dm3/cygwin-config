@@ -8,14 +8,17 @@ call vundle#rc()
 " Bundles {{{
 Bundle 'gmarik/vundle'
 
+" Support
+Bundle 'Shougo/vimproc.vim'
+Bundle 'bling/vim-airline'
+Bundle 'scrooloose/syntastic'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'lastpos.vim'
+
 " Navigation
 Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'scrooloose/nerdtree'
-Bundle 'bling/vim-airline'
 Bundle 'majutsushi/tagbar'
-Bundle 'ervandew/supertab'
-Plugin 'scrooloose/syntastic'
-Bundle 'lastpos.vim'
 Bundle 'ZoomWin'
 Bundle 'kien/ctrlp.vim'
 
@@ -38,7 +41,6 @@ Bundle 'godlygeek/tabular'
 Bundle 'guns/vim-clojure-static'
 Bundle 'guns/vim-sexp'
 Bundle 'tpope/vim-fireplace'
-"Bundle 'tpope/vim-salve'
 Bundle 'typedclojure/vim-typedclojure'
 
 " Haskell
@@ -148,49 +150,57 @@ let g:tagbar_type_haskell = {
 map <leader>tg :!codex update --force<CR>:call system("git hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
 
 nnoremap <silent> <leader>tt :TagbarToggle<cr>
+let g:tagbar_autofocus = 1
+
+set csprg=~/.local/bin/hscope
+set csto=1 " search codex tags first
+set cst
+set csverb
+nnoremap <silent> <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
+" Automatically make cscope connections
+function! LoadHscope()
+  let db = findfile("hscope.out", ".;")
+  if (!empty(db))
+    let path = strpart(db, 0, match(db, "/hscope.out$"))
+    set nocscopeverbose " suppress 'duplicate connection' error
+    exe "cs add " . db . " " . path
+    set cscopeverbose
+  endif
+endfunction
+au BufEnter /*.hs call LoadHscope()
 " }}}
 
 " Haskell {{{
 
 " Use par for prettier line formatting
-set formatprg="PARINIT='rTbgqR B=.,?_A_a Q=_s>|' par\ -w72"
+set formatprg="PARINIT='rTbgqR B=.,?_A_a Q=_s>|' par\ -w80"
 
 " Use stylish haskell instead of par for haskell buffers
 autocmd FileType haskell let &formatprg="stylish-haskell"
 
-" Use buffer words as default tab completion
-let g:SuperTabDefaultCompletionType = '<c-x><c-p>'
-
-" Show types in completion suggestions
+" Autocomplete
+let g:necoghc_debug = 0
 let g:necoghc_enable_detailed_browse = 1
+" let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_semantic_triggers = {'haskell' : ['.']}
+" let g:ycm_min_num_of_chars_for_completion = 2
 
-" Type of expression under cursor
 nmap <silent> <leader>ht :GhcModType<CR>
-" Insert type of expression under cursor
+nmap <silent> <leader>hc :GhcModCheck<CR>
+nmap <silent> <leader>hll :GhcModLint<CR>
+nmap <silent> <leader>htc :GhcModTypeClear<CR>
 nmap <silent> <leader>hT :GhcModTypeInsert<CR>
-" GHC errors and warnings
-nmap <silent> <leader>hc :SyntasticCheck ghc_mod<CR>
 
-" Resolves ghcmod base directory
-au FileType haskell let g:ghcmod_use_basedir = getcwd()
-
-" Haskell Lint
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell'] }
 nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
 
 " Hoogle the word under the cursor
 nnoremap <silent> <leader>hh :Hoogle<CR>
-
-" Hoogle and prompt for input
 nnoremap <leader>hH :Hoogle
 
 " Hoogle for detailed documentation (e.g. "Functor")
 nnoremap <silent> <leader>hi :HoogleInfo<CR>
-
-" Hoogle for detailed documentation and prompt for input
 nnoremap <leader>hI :HoogleInfo
-
-" Hoogle, close the Hoogle window
 nnoremap <silent> <leader>hz :HoogleClose<CR>
 " }}}
 
@@ -337,10 +347,6 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 
 set foldlevelstart=0
 
-" Enter to toggle folds.
-nnoremap <Enter> za
-vnoremap <Enter> za
-
 " }}}
 
 " Auto commands {{{
@@ -354,7 +360,7 @@ augroup trailing
 augroup END
 
 " Remove trailing whitespace
-autocmd FileType xml,clojure,java,sql autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType xml,clojure,java,sql,haskell autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 augroup clojure
     au!

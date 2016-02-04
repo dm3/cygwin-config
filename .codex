@@ -1,4 +1,7 @@
-hackagePath: ~/.stack/indices/Hackage/
+currentProjectIncluded: true
+hackagePath: /Users/dm3/.stack/indices/Hackage/
 tagsFileHeader: false
+tagsFileName: codex.tags
 tagsFileSorted: false
-tagsCmd: hasktags --extendedctag --ignore-close-implementation --ctags --tags-absolute --output='$TAGS' '$SOURCES'
+tagsCmd: hasktags --extendedctag --ignore-close-implementation --ctags --tags-absolute
+  --output='$TAGS' '$SOURCES'
