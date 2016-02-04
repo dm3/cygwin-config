@@ -147,10 +147,7 @@ let g:tagbar_type_haskell = {
 \ }
 
 " Generate haskell tags with codex and hscope
-map <leader>tg :!codex update --force<CR>:call system("git hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
-
-nnoremap <silent> <leader>tt :TagbarToggle<cr>
-let g:tagbar_autofocus = 1
+map <leader>tg :!codex update --force<CR>:call system("git-hscope -X TemplateHaskell")<CR><CR>:call LoadHscope()<CR>
 
 set csprg=~/.local/bin/hscope
 set csto=1 " search codex tags first
@@ -205,6 +202,8 @@ nnoremap <silent> <leader>hz :HoogleClose<CR>
 " }}}
 
 nnoremap <silent> <leader>q :NERDTreeToggle<cr>
+nnoremap <silent> <leader>tt :TagbarToggle<cr>
+let g:tagbar_autofocus = 1
 
 " Vim Sexp {{{
 " Remap h and e so that they could be used later
