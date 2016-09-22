@@ -42,6 +42,8 @@
     # Grep from repository root
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
 
+    pullall = "!f(){ git pull $@ && git submodule update --init --recursive; }; f"
+
     addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
 
     out = log --oneline --decorate origin/master..HEAD
