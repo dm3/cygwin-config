@@ -42,12 +42,13 @@
     # Grep from repository root
     gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
 
-    pullall = "!f(){ git pull $@ && git submodule update --init --recursive; }; f"
+    pullall = "!f() { git pull $@ && git submodule update --init --recursive; }; f"
 
     addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
 
     out = log --oneline --decorate origin/master..HEAD
     in = !git fetch || git lg ..origin/master
+    pushto = "!f() { git push origin $(git branch-name):$1; }; f"
 
     # From six-arm config
     lk = log --graph --topo-order --abbrev-commit --date=short --decorate --all --boundary --pretty=format:'%Cgreen%ad %Cred%h%Creset -%C(yellow)%d%Creset %s %Cblue[%cn]%Creset'

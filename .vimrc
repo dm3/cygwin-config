@@ -1,57 +1,62 @@
 " Some stuff taken from: https://github.com/zaiste/vimified/blob/master/vimrc
 
+set nocompatible " we won't be using vi
+filetype off " for Vundle
+
 " Vundle {{{
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 " }}}
 
 " Bundles {{{
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Support
-Bundle 'Shougo/vimproc.vim'
-Bundle 'bling/vim-airline'
-Bundle 'scrooloose/syntastic'
-" Bundle 'Valloric/YouCompleteMe'
-Bundle 'lastpos.vim'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'lastpos.vim'
 
 " Navigation
-Bundle 'vim-scripts/bufexplorer.zip'
-Bundle 'scrooloose/nerdtree'
-Bundle 'majutsushi/tagbar'
-Bundle 'ZoomWin'
-Bundle 'kien/ctrlp.vim'
+Plugin 'vim-scripts/bufexplorer.zip'
+Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
+Plugin 'ZoomWin'
+Plugin 'kien/ctrlp.vim'
 
 " Filetypes
-Bundle 'plasticboy/vim-markdown'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'ekalinin/Dockerfile.vim'
-Bundle 'sukima/xmledit'
-Bundle 'GEverding/vim-hocon'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'sukima/xmledit'
+Plugin 'GEverding/vim-hocon'
+Plugin 'rust-lang/rust.vim'
+Plugin 'vim-scripts/Esper-programming-language-syntax'
 
 " Manipulation
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-surround'
-Bundle 'drmikehenry/vim-fixkey'
-Bundle 'mileszs/ack.vim'
-Bundle 'vim-scripts/matchit.zip'
-Bundle 'godlygeek/tabular'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-surround'
+Plugin 'drmikehenry/vim-fixkey'
+Plugin 'mileszs/ack.vim'
+Plugin 'vim-scripts/matchit.zip'
+Plugin 'godlygeek/tabular'
 
 " Clojure
-Bundle 'guns/vim-clojure-static'
-Bundle 'guns/vim-sexp'
-Bundle 'tpope/vim-fireplace'
-Bundle 'typedclojure/vim-typedclojure'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-fireplace'
+Plugin 'typedclojure/vim-typedclojure'
 
 " Haskell
-Bundle 'neovimhaskell/haskell-vim'
-Bundle 'enomsg/vim-haskellConcealPlus'
-Bundle 'eagletmt/ghcmod-vim'
-Bundle 'eagletmt/neco-ghc'
-Bundle 'Twinside/vim-hoogle'
+"Plugin 'neovimhaskell/haskell-vim'
+"Plugin 'enomsg/vim-haskellConcealPlus'
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'Twinside/vim-hoogle'
 
 " Styling
-Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 let g:rbpt_colorpairs = [
     \ ['brown',       'RoyalBlue3'],
     \ ['Darkblue',    'SeaGreen3'],
@@ -71,7 +76,11 @@ let g:rbpt_colorpairs = [
     \ ['red',         'firebrick3'],
     \ ]
 
-Bundle 'jnurmine/Zenburn'
+Plugin 'jnurmine/Zenburn'
+
+call vundle#end()
+filetype plugin indent on " for Vundle
+
 colorscheme zenburn
 let g:zenburn_force_dark_Background = 1
 command Light colorscheme shine
@@ -81,8 +90,6 @@ command Dark colorscheme zenburn
 " Syntax {{{
 
 syntax on
-filetype on
-filetype plugin indent on
 
 " let g:clojure_align_multiline_strings = 1
 " let g:clojure_fuzzy_indent = 1
@@ -92,6 +99,7 @@ au BufRead,BufNewFile *.cljx setlocal filetype=clojure
 au BufRead,BufNewFile *.hl setlocal filetype=clojure
 au BufRead,BufNewFile *.boot setlocal filetype=clojure
 
+au BufRead,BufNewFile *.epl setlocal filetype=epl
 " }}}
 
 " Matches {{{
@@ -109,6 +117,12 @@ let maplocalleader = "`"
 " Plugins {{{
 
 let g:haskell_tabular = 1
+let g:ycm_cache_omnifunc = 0
+let g:ycm_add_preview_to_completeopt = 0
+" let g:ycm_semantic_triggers = {
+"     \ 'clojure' : ['/'],
+"     \ 'haskell' : ['.'],
+"     \ }
 
 " Tags {{{
 
@@ -167,6 +181,18 @@ endfunction
 au BufEnter /*.hs call LoadHscope()
 " }}}
 
+" Rust {{{
+" let g:rustfmt_autosave = 1
+" let g:ycm_rust_src_path = "$RUST_SRC_PATH"
+" }}}
+"
+" Clojure {{{
+" }}}
+
+" Yaml {{{
+autocmd FileType yaml setlocal indentkeys-=<:> ts=2 sts=2 sw=2 expandtab
+" }}}
+
 " Haskell {{{
 
 " Use par for prettier line formatting
@@ -178,9 +204,6 @@ autocmd FileType haskell let &formatprg="stylish-haskell"
 " Autocomplete
 let g:necoghc_debug = 0
 let g:necoghc_enable_detailed_browse = 1
-" let g:ycm_add_preview_to_completeopt = 1
-" let g:ycm_semantic_triggers = {'haskell' : ['.']}
-" let g:ycm_min_num_of_chars_for_completion = 2
 
 nmap <silent> <leader>ht :GhcModType<CR>
 nmap <silent> <leader>hc :GhcModCheck<CR>
@@ -209,8 +232,12 @@ let g:tagbar_autofocus = 1
 " Remap h and e so that they could be used later
 nmap <LocalLeader>k <Plug>(sexp_swap_list_backward)
 nmap <LocalLeader>j <Plug>(sexp_swap_list_forward)
-nnoremap <T-h> <Plug>(sexp_swap_element_backward)
-nnoremap <T-l> <Plug>(sexp_swap_element_forward)
+nmap ê <Plug>(sexp_emit_head_element)
+nmap ë <Plug>(sexp_emit_tail_element)
+nmap è <Plug>(sexp_capture_prev_element)
+nmap ì <Plug>(sexp_capture_next_element)
+" nmap è <Plug>(sexp_swap_element_backward)
+" nmap ì <Plug>(sexp_swap_element_forward)
 " }}}
 " }}}
 
@@ -273,7 +300,6 @@ set autoread " read file automatically on change if not edited
 set encoding=utf-8
 set title " title of the window set to titlestring
 
-set nocompatible " we won't be using vi
 set showcmd " show the command currently typed in
 set number " show line numbers
 set splitright  " When splitting vertically, split to the right
@@ -359,7 +385,7 @@ augroup trailing
 augroup END
 
 " Remove trailing whitespace
-autocmd FileType xml,clojure,java,sql,haskell autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType xml,clojure,java,sql,haskell,rust autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 augroup clojure
     au!
