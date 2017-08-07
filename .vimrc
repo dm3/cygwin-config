@@ -32,7 +32,9 @@ Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'sukima/xmledit'
 Plugin 'GEverding/vim-hocon'
 Plugin 'rust-lang/rust.vim'
-Plugin 'vim-scripts/Esper-programming-language-syntax'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'cespare/vim-toml'
+Plugin 'dm3/vim-epl-syntax'
 
 " Manipulation
 Plugin 'scrooloose/nerdcommenter'
@@ -46,7 +48,9 @@ Plugin 'godlygeek/tabular'
 Plugin 'guns/vim-clojure-static'
 Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-fireplace'
-Plugin 'typedclojure/vim-typedclojure'
+
+" Typescript
+Plugin 'Quramy/tsuquyomi'
 
 " Haskell
 "Plugin 'neovimhaskell/haskell-vim'
@@ -109,6 +113,39 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " }}}
 
+" OSX {{{
+" See https://github.com/guns/vim-sexp/issues/18
+
+" Timeout quickly on key codes to differentiate from normal <Esc>
+set ttimeout ttimeoutlen=0
+
+" Special named keys that cause problems when used literally
+let namedkeys = { ' ': 'Space', '\': 'Bslash', '|': 'Bar', '<': 'lt' }
+
+" Map Alt + ASCII printable chars
+for n in range(0x20, 0x7e)
+    let char = nr2char(n)
+    let key  = char
+
+    if has_key(namedkeys, char)
+        let char = namedkeys[char]
+        let key  = '<' . char . '>'
+    endif
+
+    " Escaped Meta (i.e. not 8-bit mode)
+    "  * Esc-[ is the CSI prefix (Control Sequence Introducer)
+    "  * Esc-O is the SS3 prefix (Single Shift Select of G3 Character Set)
+    if char !=# '[' && char !=# 'O'
+        try
+            execute 'set <M-' . char . ">=\<Esc>" . key
+        catch
+        endtry
+    endif
+endfor
+
+unlet namedkeys n key char
+" }}}
+
 " Mappings {{{
 
 let mapleader = "\\"
@@ -119,6 +156,9 @@ let maplocalleader = "`"
 let g:haskell_tabular = 1
 let g:ycm_cache_omnifunc = 0
 let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_semantic_triggers = {
+    \ 'typescript' : ['.'],
+    \ }
 " let g:ycm_semantic_triggers = {
 "     \ 'clojure' : ['/'],
 "     \ 'haskell' : ['.'],
@@ -187,6 +227,13 @@ au BufEnter /*.hs call LoadHscope()
 " }}}
 "
 " Clojure {{{
+let g:clojure_highlight_local_vars = 0
+" }}}
+"
+" Ocaml {{{
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+let g:syntastic_ocaml_checkers = ['merlin']
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " }}}
 
 " Yaml {{{
@@ -385,7 +432,7 @@ augroup trailing
 augroup END
 
 " Remove trailing whitespace
-autocmd FileType xml,clojure,java,sql,haskell,rust autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType xml,clojure,java,sql,haskell,rust,epl,ml,iml autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 augroup clojure
     au!
