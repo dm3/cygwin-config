@@ -6,6 +6,8 @@ if [ -f '/etc/bash_completion.d/mpc' ]; then
     source '/etc/bash_completion.d/mpc'
 fi
 
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 if [ -f "$HOME/.cargo/env" ]; then
     source "$HOME/.cargo/env"
 fi

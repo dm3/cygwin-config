@@ -14,35 +14,41 @@ Plugin 'VundleVim/Vundle.vim'
 " Support
 Plugin 'Shougo/vimproc.vim'
 Plugin 'bling/vim-airline'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'Valloric/YouCompleteMe'
+Plugin 'dense-analysis/ale'
 Plugin 'lastpos.vim'
+Plugin 'mbbill/undotree'
 
 " Navigation
 Plugin 'vim-scripts/bufexplorer.zip'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ZoomWin'
-Plugin 'kien/ctrlp.vim'
-
-" Filetypes
-Plugin 'plasticboy/vim-markdown'
-Plugin 'derekwyatt/vim-scala'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'sukima/xmledit'
-Plugin 'GEverding/vim-hocon'
-Plugin 'rust-lang/rust.vim'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'cespare/vim-toml'
-Plugin 'dm3/vim-epl-syntax'
+Plugin 'ctrlpvim/ctrlp.vim'
 
 " Manipulation
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
 Plugin 'drmikehenry/vim-fixkey'
-Plugin 'mileszs/ack.vim'
+Plugin 'jremmen/vim-ripgrep'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'godlygeek/tabular'
+
+" Filetypes
+Plugin 'plasticboy/vim-markdown'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'sukima/xmledit'
+Plugin 'GEverding/vim-hocon'
+Plugin 'cespare/vim-toml'
+Plugin 'dm3/vim-epl-syntax'
+Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'rust-lang/rust.vim'
+Plugin 'PProvost/vim-ps1'
+Plugin 'fsharp/vim-fsharp'
+"Plugin 'derekwyatt/vim-scala'
+"Plugin 'leafgarland/typescript-vim'
 
 " Clojure
 Plugin 'guns/vim-clojure-static'
@@ -50,7 +56,7 @@ Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-fireplace'
 
 " Typescript
-Plugin 'Quramy/tsuquyomi'
+"Plugin 'Quramy/tsuquyomi'
 
 " Haskell
 "Plugin 'neovimhaskell/haskell-vim'
@@ -95,6 +101,13 @@ command Dark colorscheme zenburn
 
 syntax on
 
+" slows down significantly on large files
+let g:clojure_maxlines = 30
+let g:airline_highlighting_cache = 1
+let g:airline_extensions = []
+let g:airline_theme = 'dark_minimal'
+
+"
 " let g:clojure_align_multiline_strings = 1
 " let g:clojure_fuzzy_indent = 1
 " let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
@@ -118,6 +131,15 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Timeout quickly on key codes to differentiate from normal <Esc>
 set ttimeout ttimeoutlen=0
+
+" Ctrl-P
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '_data_workspace',
+"  \ 'file': '\v\.(exe|so|dll)$',
+"  \ 'link': '',
+"  \ }
 
 " Special named keys that cause problems when used literally
 let namedkeys = { ' ': 'Space', '\': 'Bslash', '|': 'Bar', '<': 'lt' }
@@ -153,8 +175,37 @@ let maplocalleader = "`"
 
 " Plugins {{{
 
+"" ALE
+let g:airline#extensions#ale#enabled = 1
+" project-specific
+" TODO: https://github.com/dense-analysis/ale/issues/782
+" Clang-Tidy - when working with headers, compile_commands.json is unusable as
+" header files do not have associated compilation commands. We need to extract
+" the relevant compiler parameters and includes from the commands file and set
+" the `clangtidy_options` manually somehow...
+let g:ale_cpp_clangtidy_options = '-Wall -Wextra -Wshadow -Wnon-virtual-dtor -O3 -std=gnu++1z
+ \ -I''_builds/_deps/eigen3-build/install/include/eigen3''
+ \ -I''_builds/_deps/boost-build/install/include''
+ \ -I''_builds/_deps/google_benchmark-build/install/include''
+ \ -I''_builds/_deps/catch2-src/single_include'''
+let g:ale_cpp_cppcheck_options = '--force --suppressions-list=.suppress-cppcheck
+ \ -I''_builds/_deps/eigen3-build/install/include/eigen3''
+ \ -I''_builds/_deps/boost-build/install/include''
+ \ -I''_builds/_deps/google_benchmark-build/install/include''
+ \ -I''_builds/_deps/catch2-src/single_include'''
+let g:ale_c_build_dir = '_builds'
+
+let g:ale_c_parse_compile_commands = 1
+let g:ale_completion_enabled = 1
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+            \ 'javascript': ['eslint'],
+            \ 'cpp': ['cppcheck', 'clangtidy'],
+            \ }
+
 let g:haskell_tabular = 1
-let g:ycm_cache_omnifunc = 0
+let g:ycm_min_num_of_chars_for_completion = 3
+let g:ycm_cache_omnifunc = 1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_semantic_triggers = {
     \ 'typescript' : ['.'],
@@ -225,19 +276,29 @@ au BufEnter /*.hs call LoadHscope()
 " let g:rustfmt_autosave = 1
 " let g:ycm_rust_src_path = "$RUST_SRC_PATH"
 " }}}
-"
+
 " Clojure {{{
 let g:clojure_highlight_local_vars = 0
 " }}}
-"
+
 " Ocaml {{{
 let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-let g:syntastic_ocaml_checkers = ['merlin']
 execute "set rtp+=" . g:opamshare . "/merlin/vim"
 " }}}
 
 " Yaml {{{
 autocmd FileType yaml setlocal indentkeys-=<:> ts=2 sts=2 sw=2 expandtab
+" }}}
+
+" CMake {{{
+autocmd FileType cmake setlocal indentkeys-=<:> ts=2 sts=2 sw=2 expandtab
+" }}}
+
+" Markdown {{{
+" disable header folding - doesn't work - https://github.com/plasticboy/vim-markdown/issues/414
+let g:vim_markdown_folding_disabled = 1
+" do not use conceal feature, the implementation is not so good
+let g:vim_markdown_conceal = 0
 " }}}
 
 " Haskell {{{
@@ -258,9 +319,6 @@ nmap <silent> <leader>hll :GhcModLint<CR>
 nmap <silent> <leader>htc :GhcModTypeClear<CR>
 nmap <silent> <leader>hT :GhcModTypeInsert<CR>
 
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['haskell'] }
-nmap <silent> <leader>hl :SyntasticCheck hlint<CR>
-
 " Hoogle the word under the cursor
 nnoremap <silent> <leader>hh :Hoogle<CR>
 nnoremap <leader>hH :Hoogle
@@ -271,11 +329,13 @@ nnoremap <leader>hI :HoogleInfo
 nnoremap <silent> <leader>hz :HoogleClose<CR>
 " }}}
 
+nnoremap <silent> <leader>uu :UndotreeToggle<cr>
 nnoremap <silent> <leader>q :NERDTreeToggle<cr>
 nnoremap <silent> <leader>tt :TagbarToggle<cr>
 let g:tagbar_autofocus = 1
 
 " Vim Sexp {{{
+let g:sexp_filetypes = 'clojure'
 " Remap h and e so that they could be used later
 nmap <LocalLeader>k <Plug>(sexp_swap_list_backward)
 nmap <LocalLeader>j <Plug>(sexp_swap_list_forward)
@@ -297,6 +357,8 @@ nmap <leader>p "*p
 vmap <leader>p "*p
 
 map Y y$
+" delete without clobbering the unnamed register
+nnoremap s "_d
 
 inoremap jj <Esc>
 inoremap kk <Esc>
@@ -327,6 +389,9 @@ nnoremap <leader>s <C-w>s<C-w>j
 nnoremap Q gqap
 vnoremap Q gq
 
+nnoremap <leader>t i<c-r>=strftime('%Y-%m-%dT%H:%M:%S')<cr><Esc>
+inoremap <F3> <c-r>=strftime('%Y-%m-%dT%H:%M:%S')<cr>
+
 " Source current line
 vnoremap <leader>L y:execute @@<cr>
 " Source visual selection
@@ -356,6 +421,7 @@ set history=1000 " default is 20
 set scrolloff=3 " scroll 3 lines in advance of the top/bottom of the window
 set backspace=2 " make backspace work like most other apps
 set visualbell
+set suffixesadd=.md " automatically navigate if $file.md exists with `gf`
 
 " show hidden characters and linewraps
 set list
@@ -370,7 +436,11 @@ set laststatus=2 " display status line for every window
 
 " _ backups {{{
 
-set undodir=~/.vim/tmp/undo/
+if has("persistent_undo")
+    set undodir=~/.vim/tmp/undo/
+    set undofile
+endif
+
 set backupdir=~/.vim/tmp/backup/
 set directory=~/.vim/tmp/swap/
 set backup " make backups of edited files
@@ -432,7 +502,7 @@ augroup trailing
 augroup END
 
 " Remove trailing whitespace
-autocmd FileType xml,clojure,java,sql,haskell,rust,epl,ml,iml autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType xml,clojure,java,sql,haskell,rust,epl,ml,iml,julia,markdown,c,h,cpp,hpp,cmake autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 augroup clojure
     au!
