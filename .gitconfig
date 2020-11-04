@@ -4,6 +4,13 @@
 [merge]
     ff = only
     tool = vimdiff
+    autoStash = true
+
+[rebase]
+    autoStash = true
+
+[pull]
+    rebase = true
 
 [diff]
     tool = icdiff
@@ -44,6 +51,7 @@
     rmall = !git ls-files --deleted | xargs git rm
 
     branch-name = !"git rev-parse --abbrev-ref HEAD"
+    diff-to-base = "!f() { git diff $(git merge-base --fork-point master $1)..$1; }"
 
     # Publish the current branch by pushing it to the remote "origin",
     # and setting the current branch to track the upstream branch.
@@ -52,9 +60,6 @@
     # Unpublish the current branch by deleting the
     # remote version of the current branch.
     unpublish = !"git push origin :$(git branch-name)"
-
-    # Grep from repository root
-    gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f"
 
     pullall = "!f() { git pull $@ && git submodule update --init --recursive; }; f"
 

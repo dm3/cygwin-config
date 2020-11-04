@@ -65,3 +65,14 @@ mfind() {
 
 #osx
 alias on='open -a Numbers'
+
+#et
+etmux() {
+    et --command="tmux -CC new -A -s $2" $1
+}
+
+#ripgrep
+# https://github.com/BurntSushi/ripgrep/issues/86
+rgp() {
+    rg -p "$@" | less -RFX
+}

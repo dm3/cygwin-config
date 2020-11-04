@@ -9,6 +9,7 @@ else
     case "$1" in
         IN)
             cp ~/.vimrc .
+            cp ~/.gitconfig .
             cp ~/.bashrc .
             cp ~/.inputrc .
             cp ~/.ctags .
@@ -22,6 +23,7 @@ else
         ;;
         OUT)
             cp .vimrc ~
+            cp .gitconfig ~
             cp .bashrc ~
             cp .inputrc ~
 	    cp .ctags ~
