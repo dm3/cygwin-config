@@ -65,8 +65,8 @@
 
     addregex = !"$MY_SCRIPTS"/git/git_add_regex.sh
 
-    out = log --oneline --decorate origin/master..HEAD
-    in = !git fetch || git lg ..origin/master
+    out = !"git lk origin/$(git branch-name)..HEAD"
+    in = !"git fetch || git lk ..origin/$(git branch-name)"
     pushto = "!f() { git push origin $(git branch-name):$1; }; f"
 
     # From six-arm config
@@ -82,3 +82,5 @@
 
 [push]
     default = upstream
+[init]
+	defaultBranch = main
