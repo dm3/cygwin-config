@@ -2,7 +2,7 @@
     whitespace = fix
 
 [merge]
-    ff = only
+    #ff = only
     tool = vimdiff
     autoStash = true
 
@@ -47,6 +47,7 @@
     rbc = rebase --continue
     # rbi - rebase interactive on our unpushed commits.
     rbi = !"git rebase -i @{u} --autosquash"
+    rbn = !"git rebase -i HEAD~$1 --autosquash"
 
     rmall = !git ls-files --deleted | xargs git rm
 
@@ -74,7 +75,7 @@
     lkl = !git lk --numstat
 
 [core]
-    editor = vim
+    editor = nvim
 
 [user]
     name = Vadim Platonov

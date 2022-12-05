@@ -18,14 +18,13 @@ Plugin 'vim-airline/vim-airline-themes'
 "Plugin 'scrooloose/syntastic'
 "Plugin 'Valloric/YouCompleteMe'
 Plugin 'dense-analysis/ale'
-Plugin 'lastpos.vim'
+Plugin 'vim-scripts/lastpos.vim'
 Plugin 'mbbill/undotree'
 
 " Navigation
-Plugin 'vim-scripts/bufexplorer.zip'
+Plugin 'jlanzarotta/bufexplorer'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
-Plugin 'ZoomWin'
 Plugin 'ctrlpvim/ctrlp.vim'
 
 " Manipulation
@@ -33,7 +32,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-surround'
 Plugin 'drmikehenry/vim-fixkey'
 Plugin 'jremmen/vim-ripgrep'
-Plugin 'vim-scripts/matchit.zip'
+Plugin 'chrisbra/matchit'
 Plugin 'godlygeek/tabular'
 
 " Filetypes

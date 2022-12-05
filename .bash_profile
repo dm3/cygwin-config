@@ -8,8 +8,14 @@ source "$MY_SCRIPTS/bash/shell.sh"
 
 . "$HOME/.cargo/env"
 export SDKROOT=$(xcrun --sdk macosx --show-sdk-path)
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home -v '17')
 export COURSIER_PATH="/Users/vadim/Library/Application Support/Coursier/bin"
 export PYTHON_PATH="/Users/vadim/Library/Python/3.8/bin"
 export PATH="~/.local/bin:/usr/local/sbin:/usr/local/bin:$PYTHON_PATH:$COURSIER_PATH:$PATH"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+# Timescale & Postgres
+start_postgres() {
+    timescaledb_move.sh
+    launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+}
